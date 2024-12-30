@@ -9,7 +9,7 @@ const colorPalette = {
     200: "#FFE4E6",
     300: "#FFC1C7",
     400: "#FF98A2",
-    500: "#008000",
+    500: "#FF5263",
     600: "#FF5263",
     700: "#CC424F",
     800: "#98313B",
@@ -32,8 +32,8 @@ const colorPalette = {
     A400: "#15181E",
     A500: "#121419",
   },
-  gradient:{
-    main:"linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);"
+  gradient: {
+    main: "linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);",
   },
   common: {
     white: "#fff",
@@ -47,10 +47,10 @@ const colorPalette = {
   orange: { main: "#FF8227", light: "#FFF5EE" },
   blue: { light: "#50D5FF", main: "#1448FF", dark: "#6597BE" },
   green: { main: "#4DAC2B", light: "#F1F8EE" },
-  grey:{light:"#F1F2FF"},
-  salmon_Pink:{
-light:"#E7DAED"
-  }
+  grey: { light: "#F1F2FF" },
+  salmon_Pink: {
+    light: "#E7DAED",
+  },
 };
 module.exports = {
   content: [
@@ -96,9 +96,8 @@ module.exports = {
         extrabold: 800,
         black: 900,
       },
-     
+
       backgroundImage: {
-     
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",

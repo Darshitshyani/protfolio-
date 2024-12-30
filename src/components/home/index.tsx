@@ -17,15 +17,16 @@ const HomePage = () => {
       <div className="h-full flex flex-col lg:flex-row items-center justify-center gap-10 px-6 lg:px-20 py-10">
         <div className="text-center lg:text-left">
           <h1 className="text-[30px] lg:text-[40px]">
-            Empowering <span className="font-bold text-pink-500">Health</span>
+            Crafting Exceptional{" "}
+            <span className="font-bold text-pink-500">Digital Experiences</span>
           </h1>
           <h1 className="text-[30px] lg:text-[40px] font-bold">
             Delivering Excellence
             <span className="text-pink-500"> Worldwide.</span>
           </h1>
           <p className="w-full lg:w-[70%] mt-6 text-black-700">
-            We help build and manage a team of world-class developers to bring
-            your vision to life.
+            I Bring Your Vision to Life with World-Class Frontend Development
+            Expertise.
           </p>
           <CustomButton
             name="Let's Get Started"
@@ -86,7 +87,7 @@ const HomePage = () => {
       <Techology />
 
       {/* Footer Section */}
-      <div className="w-full px-6 lg:w-[70%] bg-black-200 h-auto lg:h-[200px] mb-[40px] shadow-lg rounded-lg flex flex-col lg:flex-row items-center justify-between px-6 lg:px-[50px] py-6 lg:py-0 mt-10">
+      <div className="w-full  lg:w-[70%] bg-black-200 h-auto lg:h-[200px] mb-[40px] shadow-lg rounded-lg flex flex-col lg:flex-row items-center justify-between px-6 lg:px-[50px] py-6 lg:py-0 mt-10">
         <h3 className="text-[20px] lg:text-[28px] font-semibold text-common-black text-center lg:text-left">
           Hire the best developers and designers around!
         </h3>

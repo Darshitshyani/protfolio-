@@ -8,7 +8,6 @@ export const theme = createTheme({
     },
     text: {
       primary: "#000",
-    
     },
     black: {
       100: "#F3F4F7",
@@ -31,7 +30,7 @@ export const theme = createTheme({
       200: "#FFE4E6",
       300: "#FFC1C7",
       400: "#FF98A2",
-      500: "#008000",
+      500: "#FF5263",
       600: "#FF5263",
       700: "#CC424F",
       800: "#98313B",
@@ -47,13 +46,11 @@ export const theme = createTheme({
     green: { main: "#4DAC2B" },
   },
   typography: {
-    
     button: {
       fontSize: 16,
       fontWeight: 500,
       textTransform: "none",
       fontFamily: "inherit",
-
     },
   },
   breakpoints: {
