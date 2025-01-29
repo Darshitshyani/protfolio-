@@ -1,6 +1,7 @@
 import React from "react";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
+import { FolderCopy } from "@mui/icons-material";
 
 const ProjectWork = () => {
   return (
@@ -63,14 +64,14 @@ const ProjectWork = () => {
         {/* Item 4 */}
         <div className="flex items-center gap-4 sm:gap-2">
           <div className="w-[75px] h-[75px] sm:w-[85px] sm:h-[85px] flex items-center justify-center border rounded-full text-pink-500 shadow-lg bg-pink-100 border-pink-600">
-            <SignalCellularAltIcon
+            <FolderCopy
               style={{ fontSize: "40px" }}
               className="sm:text-[50px]"
             />
           </div>
           <div className="flex flex-col items-center sm:items-start">
             <h3 className="font-semibold text-[16px] sm:text-[18px]">
-              40+ Completed
+              20+ Completed
             </h3>
             <h3 className="font-semibold text-[16px] sm:text-[18px]">
               Projects

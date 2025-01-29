@@ -58,12 +58,13 @@ const Review = () => {
             </p>
           </div>
           <div>
+          
             <p className="text-center text-[14px] sm:text-[16px] text-black-600">
-              Without any doubt I recommend Alcaline Solutions as one of the
-              best web design and digital marketing agencies. One of the best
-              agencies I’ve came across so far. Wouldn’t be hesitated to
-              introduce their work to someone else.
+            We pride ourselves on offering customized solutions that align perfectly with each customer’s unique requirements. Our team takes the time to understand your goals, challenges, and vision, ensuring that every project we undertake is not only efficient but also impactful. 
             </p>
+            </div>
+            <div>
+            <p className="text-center text-[14px] sm:text-[16px] text-black-600">With years of experience and a team of highly skilled professionals, we deliver exceptional quality and results. Our dedication to staying updated with the latest industry trends and technologies allows us to provide cutting-edge solutions. We value transparency, collaboration, and open communication.</p>
           </div>
         </Slider>
 
