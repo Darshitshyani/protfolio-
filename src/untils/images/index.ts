@@ -1,6 +1,6 @@
 export { default as Logo } from "./logo.svg";
 export {default as headerImage } from "./headerImage.svg";
-export {default as MobileApp } from "./MobileApp.svg";
+export {default as MobileApp } from "@/untils/images/MobileApp.svg";
 export {default as WebImage } from "./Webimage.svg";
 export {default as TestingImage } from "./Testingimage.svg";
 export {default as SoftWareImage } from "./SowtwareMainImage.svg";
