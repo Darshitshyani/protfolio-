@@ -38,7 +38,7 @@ const Topbar = () => {
 
   return (
     <>
-      <div className=" h-[70px] left-[5%] right-[5%]  border rounded-2xl  border-black-200 flex justify-between items-center px-3 bg-inherit fixed  top-[2%] z-50 bg-common-white">
+      <div className=" h-[70px] left-[5%] right-[5%]  border rounded-2xl  border-black-200 flex justify-between items-center px-3 bg-inherit fixed  top-[2%] z-50 bg-common-white animate-slide-bottom">
         <div>
           <h1
             className="text-[22px] text-primary-main font-bold flex mb-0 items-center cursor-pointer"

@@ -8,13 +8,17 @@ import Circle from "@/untils/icons/Circle";
 import ProjectWork from "./components/ProjectWork";
 import CaseStuday from "./components/CaseStuday";
 import Techology from "./components/Techonology";
+import useInView from "../animations";
+
 
 const HomePage = () => {
+  const [ref, isInView] = useInView(0.2);
+  
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center p-6 ">
+    <div  className="w-full h-full flex flex-col items-center justify-center p-6 ">
       {/* Header Section */}
-      <div className="h-full flex flex-col lg:flex-row items-center justify-center gap-10 px-6 lg:px-20 py-10 mt-[80px]" >
-        <div className="text-center lg:text-left">
+      <div ref={ref as any} className={`h-full flex flex-col lg:flex-row items-center justify-center gap-10 px-6 lg:px-20 py-10 mt-[80px]   `} >
+        <div className={`text-center lg:text-left ${isInView ? "animate-slide-in" : "animate-slide-out"}`}>
           <h1 className="text-[30px] lg:text-[40px] ">
             Crafting Exceptional{" "}
             <span className="font-bold text-pink-500">Digital Experiences</span>
@@ -33,7 +37,7 @@ const HomePage = () => {
           />
         </div>
 
-        <div className="w-full lg:w-auto">
+        <div className="w-full lg:w-auto ">
           <Image
             src={headerImage}
             alt="not found"
@@ -48,8 +52,8 @@ const HomePage = () => {
 
       {/* Leading Companies Section */}
       <div className="w-full  py-[50px] p-8 xl:pl-[100px] bg-pink-100" id="who">
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 w-full place-items-center">
-          <div className=" w-full  items-start  text-start">
+        <div className={`grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 w-full place-items-center `}>
+          <div className=" w-full  items-start  text-start ">
             <div className="w-[100px] border-2 mb-2 border-pink-500 mx-auto lg:mx-0" ></div>
             <h1 className="text-[25px] lg:text-[35px]">About Pixels Piece</h1>
             <h1 className="text-[30px] lg:text-[40px] font-bold">

@@ -2,11 +2,12 @@ import React from "react";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
 import { FolderCopy } from "@mui/icons-material";
-
+import  useInView  from "../../animations";
 const ProjectWork = () => {
+  const [ref, isInView] = useInView(0.2);
   return (
-    <div className="w-full mb-[40px] px-4">
-      <div className="flex flex-wrap gap-5 items-center justify-center md:justify-around">
+    <div ref={ref as any} className={`w-full mb-[40px] px-4`}>
+      <div className={`flex flex-wrap gap-5 items-center justify-center md:justify-around  ${isInView ? "animate-slide-out" : "animate-slide-in"} `}>
         {/* Item 1 */}
         <div className="flex items-center gap-4 sm:gap-2">
           <div className="w-[75px] h-[75px] sm:w-[85px] sm:h-[85px] flex items-center justify-center border rounded-full text-pink-500 shadow-lg bg-pink-100 border-pink-600">
