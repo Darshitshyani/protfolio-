@@ -1,4 +1,3 @@
-import useInView from "@/components/animations";
 import { CustomImagePreview } from "@/components/shared/CustomImagePreview";
 import { MobileApp, TestingImage, WebImage } from "@/untils/images";
 import React from "react";
@@ -38,18 +37,18 @@ const Sliders = () => {
       },
     ],
   };
-  const [ref, isInView] = useInView(0.2);
+
   return (
-    <div  className="w-full h-full bg-black-100 py-[40px] px-4 md:px-[50px] lg:px-[100px] ">
+    <div className="w-full h-full bg-black-100 py-[40px] px-4 md:px-[50px] lg:px-[100px] ">
       {/* Heading Section */}
-      <div ref={ref as any} className="flex justify-center">
-        <h1 className={`text-[25px] md:text-[30px] lg:text-[35px] font-semibold text-black-A400 mb-[20px] ${isInView ? "animate-slide-in" : "animate-slide-out"}`}>
+      <div className="flex justify-center">
+        <h1 className="text-[25px] md:text-[30px] lg:text-[35px] font-semibold text-black-A400 mb-[20px]">
           Services we offer
         </h1>
       </div>
 
       {/* Slider Section */}
-      <div className={`w-full px-2 md:px-5 overflow-hidden pb-[50px] ${isInView ? "animate-slide-bottom" : "animate-slide-out"} `}>
+      <div className="w-full px-2 md:px-5 overflow-hidden pb-[50px] ">
         <Slider {...settings} className="flex  h-full">
           {/* Card 1 */}
           <div className="w-fit min-h-[350px] bg-common-white my-5 py-4 px-4 border items-stretch border-black-200 rounded-lg flex flex-col gap-2 mx-3   ">

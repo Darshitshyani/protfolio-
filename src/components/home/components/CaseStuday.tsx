@@ -1,19 +1,17 @@
-import useInView from "@/components/animations";
 import { CaseImageOne, CaseImageThree, CaseImageTwo } from "@/untils/images";
 import Image from "next/image";
 import React from "react";
 
 const CaseStuday = () => {
-  const [ref, isInView] = useInView(0.2);
   return (
-    <div ref={ref as any} className="w-full flex flex-col justify-center items-center mt-[50px] bg-black-100 pb-[50px] p-4" id="casestudy">
+    <div className="w-full flex flex-col justify-center items-center mt-[50px] bg-black-100 pb-[50px] p-4" id="casestudy">
       <div className="w-[60px] border-2  mt-[50px] mb-[20px] text-pink-600"></div>
       <div className="text-center">
         <h1 className="text-[30px] font-base">Our recent</h1>
         <h1 className="text-[30px] font-bold">Case Studies</h1>
       </div>
       <div className="mt-8 w-full lg:px-[200px] xl:px-[200px] grid grid-cols-1 gap-3">
-        <div className={`grid md:grid-cols-1 lg:grid:cols-2 xl:grid-cols-2 items-center  sm:grid-cols-1 border rounded-xl bg-grey-light border-black-300 grid-cols-1 ${isInView ? "animate-slide-in" : "animate-slide-out"}`}>
+        <div className="grid md:grid-cols-1 lg:grid:cols-2 xl:grid-cols-2 items-center  sm:grid-cols-1 border rounded-xl bg-grey-light border-black-300 grid-cols-1 ">
           <Image
             src={CaseImageOne}
             alt="not found"
@@ -29,7 +27,7 @@ const CaseStuday = () => {
             </p>
           </div>
         </div>
-        <div className={`grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid:cols-2 xl:grid-cols-2 items-center  border rounded-xl bg-green-light border-black-300 ${isInView ? "animate-slide-out" : "animate-slide-in"}`}>
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid:cols-2 xl:grid-cols-2 items-center  border rounded-xl bg-green-light border-black-300">
           <Image src={CaseImageTwo} alt="not found"  className="w-full max-h-[450px] p-2 rounded-2xl" />
           <div className="flex flex-col p-10 justify-center">
             <h3 className="text-[25px] font-semibold">
@@ -40,7 +38,7 @@ const CaseStuday = () => {
             </p>
           </div>
         </div>
-        <div className={`grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid:cols-2 xl:grid-cols-2 items-center border rounded-xl bg-salmon_Pink-light border-black-300  ${isInView ? "animate-slide-in" : "animate-slide-out"}`}>
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid:cols-2 xl:grid-cols-2 items-center border rounded-xl bg-salmon_Pink-light border-black-300">
           <Image src={CaseImageThree} alt="not found" className="w-full  p-2 " />
           <div className="flex flex-col p-10 justify-center">
             <h3 className="text-[25px] font-semibold">

@@ -8,17 +8,17 @@ import Circle from "@/untils/icons/Circle";
 import ProjectWork from "./components/ProjectWork";
 import CaseStuday from "./components/CaseStuday";
 import Techology from "./components/Techonology";
-import useInView from "../animations";
+
 
 
 const HomePage = () => {
-  const [ref, isInView] = useInView(0.2);
+  
   
   return (
     <div  className="w-full h-full flex flex-col items-center justify-center p-6 ">
       {/* Header Section */}
-      <div ref={ref as any} className={`h-full flex flex-col lg:flex-row items-center justify-center gap-10 px-6 lg:px-20 py-10 mt-[80px]   `} >
-        <div className={`text-center lg:text-left ${isInView ? "animate-slide-in" : "animate-slide-out"}`}>
+      <div  className={`h-full flex flex-col lg:flex-row items-center justify-center gap-10 px-6 lg:px-20 py-10 mt-[80px]   `} >
+        <div className={`text-center lg:text-left animate-slide-in`}>
           <h1 className="text-[30px] lg:text-[40px] ">
             Crafting Exceptional{" "}
             <span className="font-bold text-pink-500">Digital Experiences</span>
