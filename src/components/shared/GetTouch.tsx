@@ -6,7 +6,7 @@ const GetTouch = () => {
   return (
     <div className="bg-gray-100 py-10 " id="contact">
       <Head>
-        <title>PixelPiece</title>
+        <title>Pixel's piece</title>
       </Head>
       <header className="text-center mb-10">
         <h1 className="text-4xl font-bold text-blue-600 text-primary-main">
