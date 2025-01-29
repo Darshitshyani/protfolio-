@@ -51,7 +51,7 @@ const Footer = () => {
             onClick={() => router.push("/protfolio")}
           >
             {" "}
-            Protfolio
+            Portfolio
           </p>
           <p className="hover:text-pink-600 cursor-pointer font-semibold text-black-700">
             Who we are

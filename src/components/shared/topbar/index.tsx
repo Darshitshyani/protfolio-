@@ -99,7 +99,7 @@ const Topbar = () => {
               router.push("/protfolio");
             }}
           >
-            Protfolio
+            Portfolio
           </p>
           <p
             className="cursor-pointer hover:text-primary-main"
@@ -175,7 +175,7 @@ const Topbar = () => {
                 setIsOpen(!isOpen);
               }}
             >
-              Protfolio
+              Portfolio
             </p>
             <p
               className="border-b border-black-200 pb-2"
