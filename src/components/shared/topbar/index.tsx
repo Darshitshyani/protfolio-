@@ -32,6 +32,7 @@ const Topbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isOpenList, setIsOpenList] = React.useState(false);
   const [openDrop, setOpenDrop] = React.useState(false);
+  const [isService, setIsService] = React.useState(false);
 
   const router = useRouter();
 
@@ -70,7 +71,7 @@ const Topbar = () => {
                 <div className="flex flex-col  absolute rounded-xl gap-2 p-5 left-[10%]   bg-pink-200 text-common-black mt-[40px]">
                   {services.map((item, index) => (
                     <div
-                    key={index}
+                      key={index}
                       className="flex flex-col "
                       onClick={() => setOpenDrop(false)}
                     >
@@ -168,6 +169,53 @@ const Topbar = () => {
                 </div>
               )}
             </div>
+            <div className="flex flex-col  mt-2">
+              <p className="w-full border-b border-black-200 flex justify-between items-center pb-2">
+                Services{" "}
+                <span
+                  className="cursor-pointer"
+                  onClick={() => setIsService(!isService)}
+                >
+                  <AddIcon />
+                </span>
+              </p>
+              {isService && (
+                <div className="text-black-800 animate-slide-in cursor-pointer border-b border-black-200 font-normal text-[16px] pb-2 ">
+                  <p
+                    onClick={() => {
+                      router.push("/services/digital-product-design");
+                      setIsOpen(!isOpen);
+                    }}
+                  >
+                    Digital Product Design
+                  </p>
+                  <p
+                    onClick={() => {
+                      router.push("/services/software-architecture");
+                      setIsOpen(!isOpen);
+                    }}
+                  >
+                    Software Architecture
+                  </p>
+                  <p
+                    onClick={() => {
+                      router.push("/services/engineering-devops");
+                      setIsOpen(!isOpen);
+                    }}
+                  >
+                    Engineering & DevOps
+                  </p>
+                  <p
+                    onClick={() => {
+                      router.push("/services/mobile-app-development");
+                      setIsOpen(!isOpen);
+                    }}
+                  >
+                    Mobile App Development
+                  </p>
+                </div>
+              )}
+            </div>
             <p
               className="border-b border-black-200 pb-2 "
               onClick={() => {
@@ -186,7 +234,15 @@ const Topbar = () => {
             >
               Case Studies
             </p>
-            <p className="border-b border-black-200 pb-2" onClick={() => { router.push("/#who"); setIsOpen(!isOpen); }}>Who we are</p>
+            <p
+              className="border-b border-black-200 pb-2"
+              onClick={() => {
+                router.push("/#who");
+                setIsOpen(!isOpen);
+              }}
+            >
+              Who we are
+            </p>
             <div>
               <CustomButton
                 className="w-[160px] rounded-lg mt-2 mb-2"
