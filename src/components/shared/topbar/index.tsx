@@ -138,17 +138,17 @@ const Topbar = () => {
           </div>
           <div className="flex flex-col gap-2 font-semibold text-[18px] text-black-600 overflow-auto">
             <div className="flex flex-col  mt-2">
-              <p className="w-full border-b border-black-200 flex justify-between items-center pb-2">
+              <p className={`w-full border-b border-black-200 flex justify-between items-center pb-2 ${isOpenList && "text-primary-main"} `}>
                 Technologies{" "}
                 <span
-                  className="cursor-pointer"
+                  className={`cursor-pointer ${isOpenList && "rotate-180"}`}
                   onClick={() => setIsOpenList(!isOpenList)}
                 >
                   <AddIcon />
                 </span>
               </p>
               {isOpenList && (
-                <div className="text-black-800 animate-slide-in cursor-pointer border-b border-black-200 font-normal text-[16px] pb-2 ">
+                <div className={`text-black-800  animate-slide-in cursor-pointer border-b border-black-200 font-normal text-[16px] pb-2 `}>
                   <p>React Js Development</p>
                   <p>Next Js Development</p>
                   <p>Vue Js Development</p>
@@ -170,7 +170,7 @@ const Topbar = () => {
               )}
             </div>
             <div className="flex flex-col  mt-2">
-              <p className="w-full border-b border-black-200 flex justify-between items-center pb-2">
+              <p className={`w-full border-b border-black-200 flex justify-between items-center pb-2 ${isService && "text-primary-main"}`}>
                 Services{" "}
                 <span
                   className="cursor-pointer"

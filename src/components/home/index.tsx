@@ -55,33 +55,33 @@ const HomePage = () => {
         <div className={`grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 w-full place-items-center `}>
           <div className=" w-full  items-start  text-start ">
             <div className="w-[100px] border-2 mb-2 border-pink-500 mx-auto lg:mx-0" ></div>
-            <h1 className="text-[25px] lg:text-[35px]">About Pixels Piece</h1>
-            <h1 className="text-[30px] lg:text-[40px] font-bold">
+            <h1 className="text-[20px] lg:text-[35px]">About Pixels Piece</h1>
+            <h1 className="text-[25px] lg:text-[40px] font-bold">
               to develop software
             </h1>
-            <p className="mt-6 text-black-800 text-[18px]">
+            <p className="mt-6 text-black-800 text-[15px] md:text-[18px]">
               <span className="text-pink-500 font-semibold text-[18px]">
                 Pixels Piece
               </span>{" "}
               is an Indian-based custom software development company
-              specializing in mobile and web app development. With over 40+
+              specializing in mobile and web app development. With over 20+
               projects offered to companies across the globe, we have the
               expertise needed to develop, test, and deploy tailored software
               solutions.
             </p>
-            <p className="mt-6 text-black-800 text-[18px]">
+            <p className="mt-6 text-black-800 text-[15px] md:text-[18px]">
               We have talented teams of React, React Native, Angular, Node, and
               Flutter developers and designers who are highly passionate about
               designing solutions for various industries.About Pixels Piece has
               developed innovative digital products for eCommerce, finance,
               manufacturing, wellness, travel, and more.
             </p>
-            <p className="mt-6 text-black-800 text-[18px]">
+            <p className="mt-6 text-black-800 text-[15px] md:text-[18px]">
               Count on us for custom, responsive software solutions built with
               cutting-edge technologies designed to add value.
             </p>
           </div>
-          <div className="w-fit">
+          <div className="w-fit mt-2 md:mt-0">
             <Image
               src={SoftWareImage}
               alt="not found"
