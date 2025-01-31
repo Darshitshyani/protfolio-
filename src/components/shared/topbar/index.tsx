@@ -138,55 +138,110 @@ const Topbar = () => {
           </div>
           <div className="flex flex-col gap-2 font-semibold text-[18px] text-black-600 overflow-auto">
             <div className="flex flex-col  mt-2">
-              <p className={`w-full border-b border-black-200 flex justify-between items-center pb-2 ${isOpenList && "text-primary-main"} `}>
+              <p
+                className={`w-full border-b border-black-200 flex justify-between items-center pb-2 ${
+                  isOpenList && "text-primary-main"
+                } `}
+              >
                 Technologies{" "}
                 <span
-                  className={`cursor-pointer ${isOpenList && "rotate-180"}`}
+                  className={`cursor-pointer text-black-700 `}
                   onClick={() => setIsOpenList(!isOpenList)}
                 >
                   <AddIcon />
                 </span>
               </p>
               {isOpenList && (
-                <div className={`text-black-800  animate-slide-in cursor-pointer border-b border-black-200 font-normal text-[16px] pb-2 `}>
-                  <p>React Js Development</p>
-                  <p>Next Js Development</p>
-                  <p>Vue Js Development</p>
-                  <p>Angular Js Development</p>
-                  <p>Node Js Development</p>
+                <div
+                  className={`text-black-800 flex flex-col gap-2 py-2 animate-slide-in cursor-pointer border-b border-black-200 font-normal text-[16px]`}
+                >
+                  <p>
+                    {" "}
+                    <span className="text-primary-main font-bold mr-2">➤</span>
+                    React Js Development
+                  </p>
+                  <p>
+                    {" "}
+                    <span className="text-primary-main font-bold mr-2">➤</span>
+                    Next Js Development
+                  </p>
+                  <p>
+                    {" "}
+                    <span className="text-primary-main font-bold mr-2">➤</span>
+                    Vue Js Development
+                  </p>
+                  <p>
+                    {" "}
+                    <span className="text-primary-main font-bold mr-2">➤</span>
+                    Angular Js Development
+                  </p>
+                  <p>
+                    {" "}
+                    <span className="text-primary-main font-bold mr-2">➤</span>
+                    Node Js Development
+                  </p>
                   <h1 className=" my-2 border-b border-t py-2 text-black-800 font-medium text-[18px]">
                     Mobile Development Technology
                   </h1>
-                  <p>Flutter Development</p>
-                  <p>React Native Development</p>
+                  <p>
+                    {" "}
+                    <span className="text-primary-main font-bold mr-2">➤</span>
+                    Flutter Development
+                  </p>
+                  <p>
+                    {" "}
+                    <span className="text-primary-main font-bold mr-2">➤</span>
+                    React Native Development
+                  </p>
                   <h1 className="text-[18px] my-2 border-b border-t py-2 text-black-800 font-medium">
                     Dev Ops
                   </h1>
-                  <p>Docker</p>
-                  <p>Kubernetes</p>
-                  <p>Amazon Web Services</p>
-                  <p>Google Cloud</p>
+                  <p>
+                    {" "}
+                    <span className="text-primary-main font-bold mr-2">➤</span>
+                    Docker
+                  </p>
+                  <p>
+                    {" "}
+                    <span className="text-primary-main font-bold mr-2">➤</span>
+                    Kubernetes
+                  </p>
+                  <p>
+                    {" "}
+                    <span className="text-primary-main font-bold mr-2">➤</span>
+                    Amazon Web Services
+                  </p>
+                  <p>
+                    {" "}
+                    <span className="text-primary-main font-bold mr-2">➤</span>
+                    Google Cloud
+                  </p>
                 </div>
               )}
             </div>
             <div className="flex flex-col  mt-2">
-              <p className={`w-full border-b border-black-200 flex justify-between items-center pb-2 ${isService && "text-primary-main"}`}>
+              <p
+                className={`w-full border-b border-black-200 flex justify-between items-center pb-2 ${
+                  isService && "text-primary-main"
+                }`}
+              >
                 Services{" "}
                 <span
-                  className="cursor-pointer"
+                  className="cursor-pointer text-black-700"
                   onClick={() => setIsService(!isService)}
                 >
                   <AddIcon />
                 </span>
               </p>
               {isService && (
-                <div className="text-black-800 animate-slide-in cursor-pointer border-b border-black-200 font-normal text-[16px] pb-2 ">
+                <div className="text-black-800 flex flex-col gap-2 animate-slide-in cursor-pointer border-b border-black-200 font-normal text-[16px] py-2 ">
                   <p
                     onClick={() => {
                       router.push("/services/digital-product-design");
                       setIsOpen(!isOpen);
                     }}
                   >
+                    <span className="text-primary-main font-bold mr-2">➤</span>{" "}
                     Digital Product Design
                   </p>
                   <p
@@ -195,6 +250,7 @@ const Topbar = () => {
                       setIsOpen(!isOpen);
                     }}
                   >
+                    <span className="text-primary-main font-bold mr-2">➤</span>{" "}
                     Software Architecture
                   </p>
                   <p
@@ -203,6 +259,7 @@ const Topbar = () => {
                       setIsOpen(!isOpen);
                     }}
                   >
+                    <span className="text-primary-main font-bold mr-2">➤</span>{" "}
                     Engineering & DevOps
                   </p>
                   <p
@@ -211,6 +268,7 @@ const Topbar = () => {
                       setIsOpen(!isOpen);
                     }}
                   >
+                    <span className="text-primary-main font-bold mr-2">➤</span>{" "}
                     Mobile App Development
                   </p>
                 </div>

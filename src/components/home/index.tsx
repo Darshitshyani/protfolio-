@@ -8,16 +8,16 @@ import Circle from "@/untils/icons/Circle";
 import ProjectWork from "./components/ProjectWork";
 import CaseStuday from "./components/CaseStuday";
 import Techology from "./components/Techonology";
-
-
+import { useRouter } from "next/router";
 
 const HomePage = () => {
-  
-  
+  const router = useRouter();
   return (
-    <div  className="w-full h-full flex flex-col items-center justify-center p-6 ">
+    <div className="w-full h-full flex flex-col items-center justify-center p-6 ">
       {/* Header Section */}
-      <div  className={`h-full flex flex-col lg:flex-row items-center justify-center gap-10 px-6 lg:px-20 py-10 mt-[80px]   `} >
+      <div
+        className={`h-full flex flex-col lg:flex-row items-center justify-center gap-10 px-6 lg:px-20 py-10 mt-[80px]   `}
+      >
         <div className={`text-center lg:text-left animate-slide-in`}>
           <h1 className="text-[30px] lg:text-[40px] ">
             Crafting Exceptional{" "}
@@ -28,8 +28,8 @@ const HomePage = () => {
             <span className="text-pink-500"> Worldwide.</span>
           </h1>
           <p className="w-full lg:w-[70%] mt-6 text-black-700">
-            We Bring Your Vision to Life with World-Class Web Development and mobile app development
-            Expertise.
+            We Bring Your Vision to Life with World-Class Web Development and
+            mobile app development Expertise.
           </p>
           <CustomButton
             name="Let's Get Started"
@@ -52,9 +52,11 @@ const HomePage = () => {
 
       {/* Leading Companies Section */}
       <div className="w-full  py-[50px] p-8 xl:pl-[100px] bg-pink-100" id="who">
-        <div className={`grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 w-full place-items-center `}>
+        <div
+          className={`grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 w-full place-items-center `}
+        >
           <div className=" w-full  items-start  text-start ">
-            <div className="w-[100px] border-2 mb-2 border-pink-500 mx-auto lg:mx-0" ></div>
+            <div className="w-[100px] border-2 mb-2 border-pink-500 mx-auto lg:mx-0"></div>
             <h1 className="text-[20px] lg:text-[35px]">About Pixels Piece</h1>
             <h1 className="text-[25px] lg:text-[40px] font-bold">
               to develop software
@@ -106,6 +108,9 @@ const HomePage = () => {
         <CustomButton
           name="Hire Top Developers"
           className="mt-4 lg:mt-0 w-full lg:w-auto"
+          onClick={() =>
+            router.push("https://calendly.com/darshitshyani1/30min")
+          }
         />
       </div>
     </div>

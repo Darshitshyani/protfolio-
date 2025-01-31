@@ -23,8 +23,6 @@ const Footer = () => {
             <InstagramIcon />
           </div>
 
-         
-          
           <div className="mr-1 border p-2 rounded-full border-black-200 shadow-xl bg-common-white">
             <LinkedInIcon />
           </div>
@@ -63,14 +61,14 @@ const Footer = () => {
         <div className="flex flex-col gap-6 mt-5">
           <p
             onClick={() =>
-              (window.location.href = "mailto:darshitshyani1@gmail.com")
+              (window.location.href = "mailto: pixelspieceinfo@gmail.com")
             }
             className="cursor-pointer flex items-center gap-2"
           >
             <span className=" border p-2 rounded-full border-black-200 shadow-xl bg-common-white">
               <ForwardToInboxIcon />
             </span>
-            darshitshyani1@gmail.com
+            pixelspieceinfo@gmail.com
           </p>
           <p>
             <span className="mr-1 border p-2 rounded-full border-black-200 shadow-xl bg-common-white">
