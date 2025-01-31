@@ -71,10 +71,15 @@ const Footer = () => {
             pixelspieceinfo@gmail.com
           </p>
           <p>
-            <span className="mr-1 border p-2 rounded-full border-black-200 shadow-xl bg-common-white">
-              <LocalPhoneIcon />
-            </span>{" "}
-            9377098863
+            <a
+              href="tel:+91 9377098863"
+              className="flex items-center space-x-2"
+            >
+              <span className="mr-1 border p-2 rounded-full border-black-200 shadow-xl bg-common-white">
+                <LocalPhoneIcon />
+              </span>
+              +91 9377098863
+            </a>
           </p>
         </div>
       </div>
