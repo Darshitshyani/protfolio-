@@ -84,7 +84,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="text-black-600">
-        © 2025 PixelsPiece Solutions. All rights reserved.
+        © 2025 Pixelspiece Solutions. All rights reserved.
       </p>
     </div>
   );
