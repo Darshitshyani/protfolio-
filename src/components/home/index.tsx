@@ -101,7 +101,10 @@ const HomePage = () => {
       <Techology />
 
       {/* Footer Section */}
-      <div className="w-full  lg:w-[70%] bg-black-200 h-auto lg:h-[200px] mb-[40px] shadow-lg rounded-lg flex flex-col lg:flex-row items-center justify-between px-6 lg:px-[50px] py-6 lg:py-0 mt-10 ">
+      <div
+        className="w-full  lg:w-[70%] bg-black-200 h-auto lg:h-[200px] mb-[40px] shadow-lg rounded-lg flex flex-col lg:flex-row items-center justify-between px-6 lg:px-[50px] py-6 lg:py-0 mt-10 "
+        id="hire"
+      >
         <h3 className="text-[20px] lg:text-[28px] font-semibold text-common-black text-center lg:text-left">
           Hire the best developers and designers around!
         </h3>
