@@ -56,7 +56,7 @@ export default function Techology() {
   };
 
   return (
-    <div className="text-center my-10 w-full">
+    <div className="text-center my-10 w-full" id="hire">
       <div className="flex w-full flex-col justify-center items-center mt-5">
         <h1 className="text-[24px] sm:text-[30px]">Our</h1>
         <h1 className="text-[24px] sm:text-[30px] font-semibold">Tech Stack</h1>
@@ -113,7 +113,11 @@ export default function Techology() {
         </Box>
         <CustomTabPanel value={value} index={0}>
           <div className="flex flex-wrap gap-5 items-center justify-center">
-            <Image src={NodeJs} alt="not found" className="w-[100px] sm:w-[150px]" />
+            <Image
+              src={NodeJs}
+              alt="not found"
+              className="w-[100px] sm:w-[150px]"
+            />
             <Image
               src={Laravel}
               alt="not found"
@@ -124,8 +128,16 @@ export default function Techology() {
               alt="not found"
               className="w-[100px] sm:w-[150px]"
             />
-            <Image src={Php} alt="not found" className="w-[100px] sm:w-[150px]" />
-            <Image src={Python} alt="not found" className="w-[100px] sm:w-[150px]" />
+            <Image
+              src={Php}
+              alt="not found"
+              className="w-[100px] sm:w-[150px]"
+            />
+            <Image
+              src={Python}
+              alt="not found"
+              className="w-[100px] sm:w-[150px]"
+            />
           </div>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>

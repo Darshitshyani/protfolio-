@@ -6,7 +6,7 @@ const Circle = () => {
 <circle cx="36" cy="36" r="36" fill="url(#paint0_linear_1_425)"/>
 <defs>
 <linearGradient id="paint0_linear_1_425" x1="72" y1="0" x2="0" y2="72" gradientUnits="userSpaceOnUse">
-<stop stop-color="#F76680"/>
+<stop stop-color="#1E90FF"/>
 <stop offset="1" stop-color="#57007B"/>
 </linearGradient>
 </defs>

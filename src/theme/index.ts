@@ -8,7 +8,6 @@ export const theme = createTheme({
     },
     text: {
       primary: "#000",
-    
     },
     black: {
       100: "#F3F4F7",
@@ -27,18 +26,19 @@ export const theme = createTheme({
       A500: "#121419",
     },
     pink: {
-      100: "#FFF1F3",
-      200: "#FFE4E6",
-      300: "#FFC1C7",
-      400: "#FF98A2",
-      500: "#008000",
-      600: "#FF5263",
-      700: "#CC424F",
-      800: "#98313B",
-      900: "#7A272F",
-      A100: "#5C1E24",
-    },
-    primary: { main: "#FF5263", light: "#FFF1F3", dark: "#CC424F" },
+  // 50: "#0", // Optional, unused
+  100: "#EBF5FF",   // lightest blue
+  200: "#D6EFFF",
+  300: "#A8DCFF",
+  400: "#75C2FF",
+  500: "#3BA6FF",   // primary blue
+  600: "#1E90FF",   // a bit deeper (same as 500 in intensity)
+  700: "#1572CC",
+  800: "#105699",
+  900: "#0C417A",
+  A100: "#08315C",  // darkest blue (accent)
+},
+    primary: { main: "#1E90FF", light: "#FFF1F3", dark: "#CC424F" },
     secondary: { main: "#17181B", light: "#17181bcd" },
     success: { main: "#40C34D", dark: "#1FDC1B", light: "#0EA32E" },
     error: { main: "#DD5757", dark: "#642728", light: "#A04041" },
@@ -47,13 +47,11 @@ export const theme = createTheme({
     green: { main: "#4DAC2B" },
   },
   typography: {
-    
     button: {
       fontSize: 16,
       fontWeight: 500,
       textTransform: "none",
       fontFamily: "inherit",
-
     },
   },
   breakpoints: {
