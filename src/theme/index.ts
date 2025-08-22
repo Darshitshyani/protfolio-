@@ -26,7 +26,6 @@ export const theme = createTheme({
       A500: "#121419",
     },
     pink: {
-<<<<<<< HEAD
   // 50: "#0", // Optional, unused
   100: "#EBF5FF",   // lightest blue
   200: "#D6EFFF",
@@ -40,20 +39,6 @@ export const theme = createTheme({
   A100: "#08315C",  // darkest blue (accent)
 },
     primary: { main: "#1E90FF", light: "#FFF1F3", dark: "#CC424F" },
-=======
-      100: "#FFF1F3",
-      200: "#FFE4E6",
-      300: "#FFC1C7",
-      400: "#FF98A2",
-      500: "#FF5263",
-      600: "#FF5263",
-      700: "#CC424F",
-      800: "#98313B",
-      900: "#7A272F",
-      A100: "#5C1E24",
-    },
-    primary: { main: "#FF5263", light: "#FFF1F3", dark: "#CC424F" },
->>>>>>> ac734b40864ca5d8cbac17a0fdfccb4d8e423695
     secondary: { main: "#17181B", light: "#17181bcd" },
     success: { main: "#40C34D", dark: "#1FDC1B", light: "#0EA32E" },
     error: { main: "#DD5757", dark: "#642728", light: "#A04041" },

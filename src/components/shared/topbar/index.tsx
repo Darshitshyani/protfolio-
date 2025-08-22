@@ -45,18 +45,11 @@ const Topbar = () => {
             onClick={() => router.push("/")}
           >
             <span>
-<<<<<<< HEAD
               {/* Replace the logo image here */}
               <Image src={Logo} alt="Pixels Piece Logo" width={40} height={40} />
             </span>
             {/* Update the text here */}
             Pixels Piece
-=======
-              {" "}
-              <Image src={Logo} alt="not found" />
-            </span>
-            ixels Piece
->>>>>>> ac734b40864ca5d8cbac17a0fdfccb4d8e423695
           </h1>
         </div>
         <div className="hidden gap-8 font-semibold text-[18px] text-black-600 md:hidden lg:flex  xl:flex relative z-50">

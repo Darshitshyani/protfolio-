@@ -1,7 +1,6 @@
 import Head from "next/head";
 import React from "react";
 import CustomButton from "./CustomButton";
-<<<<<<< HEAD
 import emailjs from "emailjs-com";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -100,19 +99,12 @@ const GetTouch = () => {
     }
   };
 
-=======
-
-const GetTouch = () => {
->>>>>>> ac734b40864ca5d8cbac17a0fdfccb4d8e423695
   return (
     <div className="bg-gray-100 py-10 " id="contact">
       <Head>
         <title>Pixelspiece</title>
       </Head>
-<<<<<<< HEAD
       <ToastContainer position="top-right" autoClose={3000} />
-=======
->>>>>>> ac734b40864ca5d8cbac17a0fdfccb4d8e423695
       <header className="text-center mb-10">
         <h1 className="text-4xl font-bold text-blue-600 text-primary-main">
           Get in Touch
@@ -136,25 +128,17 @@ const GetTouch = () => {
                 </label>
                 <input
                   type="text"
-<<<<<<< HEAD
                   onChange={handleChange}
                   id="name"
                   name="name"
                   value={result.name}
-=======
-                  id="name"
-                  name="name"
->>>>>>> ac734b40864ca5d8cbac17a0fdfccb4d8e423695
                   className="w-full mt-2 p-2 border border-pink-300 rounded-md focus:outline-none"
                   placeholder="Your Name"
                   required
                 />
-<<<<<<< HEAD
                 {errors.name && (
                   <p className="text-error-main text-sm mt-1">{errors.name}</p>
                 )}
-=======
->>>>>>> ac734b40864ca5d8cbac17a0fdfccb4d8e423695
               </div>
               <div className="mb-4">
                 <label
@@ -165,25 +149,17 @@ const GetTouch = () => {
                 </label>
                 <input
                   type="email"
-<<<<<<< HEAD
                   onChange={handleChange}
                   id="email"
                   name="email"
                   value={result.email}
-=======
-                  id="email"
-                  name="email"
->>>>>>> ac734b40864ca5d8cbac17a0fdfccb4d8e423695
                   className="w-full mt-2 p-2 border border-pink-300 rounded-md  focus:outline-none"
                   placeholder="Your Email"
                   required
                 />
-<<<<<<< HEAD
                 {errors.email && (
                   <p className="text-error-main text-sm mt-1">{errors.email}</p>
                 )}
-=======
->>>>>>> ac734b40864ca5d8cbac17a0fdfccb4d8e423695
               </div>
               <div className="mb-4">
                 <label
@@ -195,17 +171,13 @@ const GetTouch = () => {
                 <textarea
                   id="message"
                   name="message"
-<<<<<<< HEAD
                   onChange={handleChange}
                   value={result.message}
-=======
->>>>>>> ac734b40864ca5d8cbac17a0fdfccb4d8e423695
                   rows={4}
                   className="w-full mt-2 p-2 border border-pink-300 rounded-md  focus:outline-none"
                   placeholder="Your Message"
                   required
                 ></textarea>
-<<<<<<< HEAD
                 {errors.message && (
                   <p className="text-error-main text-sm mt-1">{errors.message}</p>
                 )}
@@ -240,15 +212,6 @@ const GetTouch = () => {
                   </svg>
                 )}
                 
-=======
-              </div>
-              <CustomButton
-                type="submit"
-                className="w-fit  text-white py-2 rounded-md "
-                name="Submit"
-              >
-                Submit
->>>>>>> ac734b40864ca5d8cbac17a0fdfccb4d8e423695
               </CustomButton>
             </form>
           </div>

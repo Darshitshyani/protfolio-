@@ -4,7 +4,6 @@ import { keyframes } from "@emotion/react";
 import { grey } from "@mui/material/colors";
 
 const colorPalette = {
-<<<<<<< HEAD
   pink:{
   // 50: "#0", // Optional, unused
   100: "#EBF5FF",   // lightest blue
@@ -18,21 +17,6 @@ const colorPalette = {
   900: "#0C417A",
   A100: "#08315C",  // darkest blue (accent)
 },
-=======
-  pink: {
-    // 50: "#0",
-    100: "#FFF1F3",
-    200: "#FFE4E6",
-    300: "#FFC1C7",
-    400: "#FF98A2",
-    500: "#FF5263",
-    600: "#FF5263",
-    700: "#CC424F",
-    800: "#98313B",
-    900: "#7A272F",
-    A100: "#5C1E24",
-  },
->>>>>>> ac734b40864ca5d8cbac17a0fdfccb4d8e423695
   black: {
     100: "#F3F4F7",
     200: "#E2E4EB",
