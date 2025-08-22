@@ -72,7 +72,11 @@ const Protfolio = () => {
         style={{
           ...style,
 
+<<<<<<< HEAD
           background: "#1E90FF",
+=======
+          background: "#FF5263",
+>>>>>>> ac734b40864ca5d8cbac17a0fdfccb4d8e423695
           borderRadius: "50%",
         }}
         onClick={onClick}
