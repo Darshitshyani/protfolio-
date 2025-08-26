@@ -21,11 +21,12 @@ const Footer = () => {
       <div>
         <p className="font-semibold">Social</p>
         <div className="flex gap-2 mt-2">
-          <div className="mr-1 border p-2 rounded-full border-black-200 shadow-xl bg-common-white">
+          <div className="mr-1 border p-2 cursor-pointer rounded-full border-black-200 shadow-xl bg-common-white"
+          onClick={() => window.open("https://www.instagram.com/pixelspiece/","_blank")  }>
             <InstagramIcon />
           </div>
 
-          <div className="mr-1 border p-2 rounded-full border-black-200 shadow-xl bg-common-white">
+          <div className="mr-1 border p-2 cursor-pointer rounded-full border-black-200 shadow-xl bg-common-white">
             <LinkedInIcon />
           </div>
         </div>
