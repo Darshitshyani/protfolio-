@@ -55,7 +55,14 @@ const Topbar = () => {
         <div className="hidden gap-8 font-semibold text-[18px] text-black-600 md:hidden lg:flex  xl:flex relative z-50">
           <p
             className="cursor-pointer hover:text-primary-main"
-            onClick={() => router.push("/#who")}
+            onClick={() => {
+              const el = document.getElementById("who");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+              } else {
+                router.push("/#who");
+              }
+            }}
           >
             Who we are
           </p>
@@ -97,15 +104,20 @@ const Topbar = () => {
           </div>
           <p
             className="cursor-pointer hover:text-primary-main"
-            onClick={() => {
-              router.push("/protfolio");
-            }}
+            onClick={() => router.push("/protfolio")}
           >
             Portfolio
           </p>
           <p
             className="cursor-pointer hover:text-primary-main"
-            onClick={() => router.push("/#casestudy")}
+            onClick={() => {
+              const el = document.getElementById("casestudy");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+              } else {
+                router.push("/#casestudy");
+              }
+            }}
           >
             Case Studies
           </p>
