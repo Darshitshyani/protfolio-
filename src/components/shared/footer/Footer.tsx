@@ -11,10 +11,12 @@ const Footer = () => {
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5 p-6 bg-black-100 h-full py-5 border-t border-black-200">
       <div>
-        <p className="font-semibold">
-          We are creative Peoples, passionate for designing well crafted,simple
-          and functional web and mobile apps.
-        </p>
+         <p className="font-semibold">Address</p>
+        <div className="mt-2 text-sm text-black-700 font-semibold">
+          Pragati IT park, C-2/716,<br />
+          Sudama Chowk, Mota Varachha,<br />
+          Surat, Gujarat 394101
+        </div>
       </div>
       <div>
         <p className="font-semibold">Social</p>
@@ -58,7 +60,7 @@ const Footer = () => {
       </div>
       <div>
         <p className="font-semibold">Support</p>
-        <div className="flex flex-col gap-6 mt-5">
+        <div className="flex flex-col gap-3 mt-5">
           <p
             onClick={() =>
               (window.location.href = "mailto: pixelspieceinfo@gmail.com")
@@ -82,6 +84,7 @@ const Footer = () => {
             </a>
           </p>
         </div>
+       
       </div>
       <p className="text-black-600">
         © 2025 Pixelspiece Solutions. All rights reserved.
