@@ -9,6 +9,8 @@ import ProjectWork from "./components/ProjectWork";
 import CaseStuday from "./components/CaseStuday";
 import Techology from "./components/Techonology";
 import { useRouter } from "next/router";
+import TrueFocus from '../shared/TrueFocus';
+import RotatingText from "../shared/RotatingText";
 
 const HomePage = () => {
   const router = useRouter();
@@ -19,12 +21,20 @@ const HomePage = () => {
         className={`h-full flex flex-col lg:flex-row items-center justify-center gap-10 px-6 lg:px-20 py-10 mt-[80px]   `}
       >
         <div className={`text-center lg:text-left animate-slide-in`}>
-          <h1 className="text-[30px] lg:text-[40px] ">
+          <h1 className="text-[30px] lg:text-[40px] md:text-nowrap ">
             Crafting Exceptional{" "}
             <span className="font-bold text-pink-500">Digital Experiences</span>
           </h1>
-          <h1 className="text-[30px] lg:text-[40px] font-bold">
-            Delivering Excellence
+          <h1 className="text-[30px] lg:text-[40px] w-full font-bold gap-5 flex-wrap text-center flex items-center justify-center mt-2">
+            <TrueFocus 
+sentence="Delivering Excellence"
+manualMode={false}
+blurAmount={5}
+borderColor="#1E90FF"
+animationDuration={1}
+pauseBetweenAnimations={1}
+/>
+            
             <span className="text-pink-500"> Worldwide.</span>
           </h1>
           <p className="w-full lg:w-[70%] mt-6 text-black-700">
@@ -59,8 +69,35 @@ const HomePage = () => {
           <div className=" w-full  items-start  text-start ">
             <div className="w-[100px] border-2 mb-2 border-pink-500 mx-auto lg:mx-0"></div>
             <h1 className="text-[20px] lg:text-[35px]">About Pixels Piece</h1>
-            <h1 className="text-[25px] lg:text-[40px] font-bold">
-              to develop software
+            <h1 className="text-[25px] lg:text-[40px] gap-3 font-bold flex items-center  lg:justify-start ">
+              to  <RotatingText
+  texts={[
+  "develop software",
+  "develop software!",
+  "build applications",
+  "design user interfaces",
+  "create digital solutions",
+  "write clean code",
+  "develop web apps",
+  "build mobile apps",
+  "optimize performance",
+  "debug and test software",
+  "deploy applications",
+  "maintain software systems",
+  "innovate with technology",
+  "engineer digital products"
+]}
+  mainClassName="px-2 sm:px-2 md:px-3 bg-cyan-300 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+  staggerFrom={"last"}
+  initial={{ y: "100%" }}
+  animate={{ y: 0 }}
+  className="text-primary-main"
+  exit={{ y: "-120%" }}
+  staggerDuration={0.025}
+  splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+  rotationInterval={2000}
+/> 
             </h1>
             <p className="mt-6 text-black-800 text-[15px] md:text-[18px]">
               <span className="text-pink-500 font-semibold text-[18px]">
@@ -72,6 +109,8 @@ const HomePage = () => {
               expertise needed to develop, test, and deploy tailored software
               solutions.
             </p>
+     
+
             <p className="mt-6 text-black-800 text-[15px] md:text-[18px]">
               We have talented teams of React, React Native, Angular, Node, and
               Flutter developers and designers who are highly passionate about
@@ -100,7 +139,7 @@ const HomePage = () => {
       <Review />
       <CaseStuday />
       <Techology />
-
+      
       {/* Footer Section */}
       <div className="w-full  lg:w-[70%] bg-black-200 h-auto lg:h-[200px] mb-[40px] shadow-lg rounded-lg flex flex-col lg:flex-row items-center justify-between px-6 lg:px-[50px] py-6 lg:py-0 mt-10 ">
         <h3 className="text-[20px] lg:text-[28px] font-semibold text-common-black text-center lg:text-left">
@@ -114,6 +153,7 @@ const HomePage = () => {
           }
         />
       </div>
+  
     </div>
   );
 };
