@@ -10,7 +10,7 @@ import CaseStuday from "./components/CaseStuday";
 import Techology from "./components/Techonology";
 import { useRouter } from "next/router";
 import TrueFocus from '../shared/TrueFocus';
-import RotatingText from "../shared/RotatingText";
+import RotatingText  from "../shared/RotatingText";
 
 const HomePage = () => {
   const router = useRouter();
@@ -71,7 +71,7 @@ pauseBetweenAnimations={1}
             <h1 className="text-[20px] lg:text-[35px]">About Pixels Piece</h1>
             <h1 className="text-[25px] lg:text-[40px] gap-3 font-bold flex items-center  lg:justify-start ">
               to  <RotatingText
-  texts={[
+                  texts={[
   "develop software",
   "develop software!",
   "build applications",
