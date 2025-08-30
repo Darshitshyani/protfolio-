@@ -30,3 +30,11 @@ export {default as DEV1 } from "./DEV1.jpg";
 export {default as DEV2 } from "./DEV2.jpg";
 export {default as M1 } from "./M1.jpg";
 export {default as M2 } from "./M2.jpg";
+export {default as bid1 } from "../images/bids/bid1.jpeg";
+export {default as bid2 } from "../images/bids/bid2.jpeg";
+export {default as bid3 } from "../images/bids/bid3.jpeg";
+export {default as bid4 } from "../images/bids/bid4.jpeg";
+export {default as bid5 } from "../images/bids/bid5.jpeg";
+export {default as bid6 } from "../images/bids/bid6.jpeg";
+export {default as bid7 } from "../images/bids/bid7.jpeg";
+
