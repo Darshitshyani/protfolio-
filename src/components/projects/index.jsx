@@ -276,14 +276,14 @@ const Projects = ({index}) => {
 
   ];
     const projectDetails = projects[+index];
-console.log(projectDetails);
+
     
   return (
     <div className='mt-[100px]'>
         <div className='px-[35px] md:px-[87px] flex justify-between mb-8 gap-4 h-full  md:h-[70vh] flex-wrap md:flex-nowrap '>
             <div className='w-full md:w-[40%] bg-gray-200 p-[32px] rounded-2xl bg-pink-100 overflow-y-auto '>
                 
-              <h1 className='text-[30px] flex justify-between item-center'><p className='flex items-center font-bold gap-2 hover:text-primary-main curser-pointer'> <ArrowBackIcon /><span className='text-primary-main font-bold'>{projectDetails?.title}</span></p> {projectDetails?.url&&<p className='hover:text-primary-main ' onClick={ ()=>{ 
+              <h1 className='text-[30px] flex justify-between item-center'><p className='flex items-center font-bold gap-2 hover:text-primary-main curser-pointer'> <ArrowBackIcon onClick={()=>{window.history.back() }} /><span className='text-primary-main font-bold'>{projectDetails?.title}</span></p> {projectDetails?.url&&<p className='hover:text-primary-main ' onClick={ ()=>{ 
                 window.open(projectDetails.url, '_blank');
               } }><OpenInNewIcon /></p>}</h1> 
                <p className='text-lg font-semibold my-1'>About</p>
