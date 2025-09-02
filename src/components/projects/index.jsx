@@ -277,8 +277,8 @@ const Projects = ({index}) => {
 
     
   return (
-    <div className='mt-[100px] min-h-screen'>
-        <div className='px-[20px] md:px-[87px] flex flex-col md:flex-row gap-6 mb-8 h-full'>
+    <div className='mt-[100px] min-h-[60vh]'>
+        <div className='px-[20px] md:px-[87px] flex flex-col md:flex-row gap-6 mb-8 h-full items-center'>
             {/* Project Details Panel - No scrolling */}
             <div className='w-full md:w-[40%] bg-pink-100 p-6 rounded-2xl'>
               <h1 className='text-2xl md:text-[30px] flex justify-between items-center mb-4'>
@@ -325,7 +325,7 @@ const Projects = ({index}) => {
             </div>
             
             {/* Image Gallery - Full height and width images */}
-            <div className='w-full md:w-[60%] h-[70vh] md:h-[80vh]'>
+            <div className='w-full md:w-[60%] h-[30vh] md:h-[70vh]'>
               <div className='h-full overflow-y-auto snap-y snap-mandatory rounded-2xl border border-black-200'>
                 {projectDetails?.images.map((val, index) => (  
                   <div key={index} className='h-full w-full snap-start snap-always'>
