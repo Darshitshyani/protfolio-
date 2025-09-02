@@ -1,4 +1,3 @@
-
 import { memo } from 'react';
 import React from "react";
 import a1 from "@/untils/images/admin/a1.jpeg";
@@ -46,7 +45,6 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Image from "next/image";
-
 
 const Projects = ({index}) => {
   
@@ -279,47 +277,68 @@ const Projects = ({index}) => {
 
     
   return (
-    <div className='mt-[100px]'>
-        <div className='px-[35px] md:px-[87px] flex justify-between mb-8 gap-4 h-full  md:h-[70vh] flex-wrap md:flex-nowrap '>
-            <div className='w-full md:w-[40%] bg-gray-200 p-[32px] rounded-2xl bg-pink-100 overflow-y-auto '>
-                
-              <h1 className='text-[30px] flex justify-between item-center'><p className='flex items-center font-bold gap-2 hover:text-primary-main curser-pointer'> <ArrowBackIcon onClick={()=>{window.history.back() }} /><span className='text-primary-main font-bold'>{projectDetails?.title}</span></p> {projectDetails?.url&&<p className='hover:text-primary-main ' onClick={ ()=>{ 
-                window.open(projectDetails.url, '_blank');
-              } }><OpenInNewIcon /></p>}</h1> 
-               <p className='text-lg font-semibold my-1'>About</p>
-                <p className='text-gray-600 mb-4'>{projectDetails?.description}</p>
-               <p className='text-lg font-semibold my-1'>Fetures</p>
-            <div className='flex flex-col gap-2 '>
-           { projectDetails?.features.map((feature, idx) => (
-                <div key={idx} className='flex items-start gap-2'>
-                   
-                 <span><NavigateNextIcon /></span>   <p className='text-gray-600'>{feature}</p>
-                </div>
-           )) }
-           {
-            projectDetails?.technologies && <><p className='text-lg font-semibold mt-4'>Technologies</p>
-            <div className='flex gap-2 flex-wrap'>
-            { projectDetails?.technologies.map((tech, idx) => (
-                <div key={idx} className=' px-2 py-1 rounded bg-pink-300  text-primary-main flex items-center gap-2'>
-                   
-                    <p className='text-gray-600'>{tech}</p>
-                </div>
-           )) }
+    <div className='mt-[100px] min-h-screen'>
+        <div className='px-[20px] md:px-[87px] flex flex-col md:flex-row gap-6 mb-8 h-full'>
+            {/* Project Details Panel - No scrolling */}
+            <div className='w-full md:w-[40%] bg-pink-100 p-6 rounded-2xl'>
+              <h1 className='text-2xl md:text-[30px] flex justify-between items-center mb-4'>
+                <span className='flex items-center font-bold gap-2 text-primary-main cursor-pointer'>
+                  <ArrowBackIcon 
+                    onClick={() => window.history.back()} 
+                    className="hover:scale-110 transition-transform"
+                  />
+                  {projectDetails?.title}
+                </span> 
+                {projectDetails?.url && (
+                  <OpenInNewIcon 
+                    className='hover:text-primary-main cursor-pointer hover:scale-110 transition-transform'
+                    onClick={() => window.open(projectDetails.url, '_blank')}
+                  />
+                )}
+              </h1> 
+              
+              <p className='text-lg font-semibold my-2'>About</p>
+              <p className='text-gray-600 mb-6'>{projectDetails?.description}</p>
+              
+              <p className='text-lg font-semibold my-2'>Features</p>
+              <div className='flex flex-col gap-3 mb-6'>
+                {projectDetails?.features.map((feature, idx) => (
+                  <div key={idx} className='flex items-start gap-2'>
+                    <NavigateNextIcon className="text-primary-main mt-0.5 flex-shrink-0" />
+                    <p className='text-gray-600'>{feature}</p>
+                  </div>
+                ))}
+              </div>
+              
+              {projectDetails?.technologies && (
+                <>
+                  <p className='text-lg font-semibold my-2'>Technologies</p>
+                  <div className='flex gap-2 flex-wrap'>
+                    {projectDetails?.technologies.map((tech, idx) => (
+                      <div key={idx} className='px-3 py-1 rounded-full bg-pink-300 text-primary-main'>
+                        {tech}
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
-            </>
-           }
+            
+            {/* Image Gallery - Full height and width images */}
+            <div className='w-full md:w-[60%] h-[70vh] md:h-[80vh]'>
+              <div className='h-full overflow-y-auto snap-y snap-mandatory rounded-2xl border border-black-200'>
+                {projectDetails?.images.map((val, index) => (  
+                  <div key={index} className='h-full w-full snap-start snap-always'>
+                    <Image 
+                      src={val} 
+                      alt={`${projectDetails?.title} screenshot ${index + 1}`}
+                      className='w-full h-full '
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-
-            </div>
-            <div className='w-full md:w-[60%]   flex flex-col gap-4 h-full overflow-y-scroll  border  border-black-200 p-1 rounded-2xl '>
-              <div className='flex  flex-col gap-4  top-0  rounded-2xl'>
-               { projectDetails?.images.map((val)=>{  
-                return<Image src={val} alt='not found' className='h-full  md:h-[60vh] sticky top-0 rounded-2xl border ' />
-               }) }
-               </div>
-            </div>
-      
-      </div>
+        </div>
     </div>
   );
 };
