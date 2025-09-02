@@ -21,10 +21,10 @@ import  bid7  from "@/untils/images/bids/bid7.jpeg";
 import cal1 from "@/untils/images/calc/clac-1.png"
 import cal2 from "@/untils/images/calc/calc-2.png"
 import cal3 from "@/untils/images/calc/calc-3.png";
-import g1 from "@/untils/images/gabble/g1.jpeg"
-import g2 from "@/untils/images/gabble/g2.jpeg"
-import g3 from "@/untils/images/gabble/g3.jpeg" 
-import g4 from "@/untils/images/gabble/g4.jpeg"
+import g1 from "@/untils/images/gabble/g1.jpg"
+import g2 from "@/untils/images/gabble/g2.jpg"
+import g3 from "@/untils/images/gabble/g3.jpg" 
+import g4 from "@/untils/images/gabble/g4.jpg"
 import n1 from "@/untils/images/neha/n1.jpeg"
 import n2 from "@/untils/images/neha/n2.jpeg"
 import n3 from "@/untils/images/neha/n3.jpeg"
@@ -43,6 +43,7 @@ import blue3 from "@/untils/images/bluesky/blue3.png"
 import blue4 from "@/untils/images/bluesky/blue4.png"
 import Image from "next/image";
 import { url } from "inspector";
+import { useRouter } from "next/router";
 
 
 const Protfolio = () => {
@@ -101,7 +102,7 @@ const Protfolio = () => {
     },
   ];
 
- 
+ const router = useRouter()
   const CustomArrow = (props: any) => {
     const { className, style, onClick } = props;
     return (
@@ -170,9 +171,9 @@ const Protfolio = () => {
                   <h3 className="text-xl font-semibold ">
                     {project.title}
                   </h3>
-                {project.url&& <button className="bg-pink-600 mr-4 px-4 py-2 rounded hover:bg-pink-700" onClick={() => window.open(project.url, "_blank") }>
-  <VisibilityIcon style={{ color: "white" }} />
-</button>}
+            <p className="underline cursor-pointer text-primary-main" onClick={()=>{
+              router.push(`projects/${index}`)
+            } }>View more</p>
                   </div>
                   <div className="p-4">
                     <Slider {...settingsInside}>
