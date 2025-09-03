@@ -1,14 +1,15 @@
-import React, { use } from "react";
+import React, { useState, useEffect } from "react";
 import CustomButton from "../CustomButton";
 import { Logo } from "@/untils/images";
 import MenuIcon from "@mui/icons-material/Menu";
 import Image from "next/image";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import CustomPopover from "../CustomPopover";
 import { ArrowDropDown, ArrowDropUp, ArrowRight } from "@mui/icons-material";
-
 import { useRouter } from "next/router";
+
 const services = [
   {
     title: "Digital Product Design",
@@ -28,33 +29,77 @@ const services = [
   },
 ];
 
+const technologies = [
+  {
+    category: "Web Development",
+    items: [
+      "React Js Development",
+      "Next Js Development",
+      "Vue Js Development",
+      "Angular Js Development",
+      "Node Js Development"
+    ]
+  },
+  {
+    category: "Mobile Development",
+    items: [
+      "Flutter Development",
+      "React Native Development"
+    ]
+  },
+  {
+    category: "DevOps",
+    items: [
+      "Docker",
+      "Kubernetes",
+      "Amazon Web Services",
+      "Google Cloud"
+    ]
+  }
+];
+
 const Topbar = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [isOpenList, setIsOpenList] = React.useState(false);
-  const [openDrop, setOpenDrop] = React.useState(false);
-  const [isService, setIsService] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenList, setIsOpenList] = useState(false);
+  const [openDrop, setOpenDrop] = useState(false);
+  const [isService, setIsService] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const router = useRouter();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
-      <div className=" h-[70px] left-[5%] right-[5%]  border rounded-2xl  border-black-200 flex justify-between items-center px-3 bg-inherit fixed  top-[2%] z-50 bg-common-white animate-slide-bottom">
+      <div 
+        className={`h-[70px] left-[5%] right-[5%] border border-black-200 rounded-2xl flex justify-between items-center px-3 fixed top-[2%] z-50 transition-all duration-300 ${
+          scrolled 
+            ? "bg-white/80 backdrop-blur-2xl border-gray-200 shadow-sm" 
+            : "bg-white/60 backdrop-blur-2xl border-gray-100"
+        }`}
+      >
         <div>
           <h1
             className="text-[22px] text-primary-main font-bold flex mb-0 items-center cursor-pointer"
             onClick={() => router.push("/")}
           >
-            <span>
-              {/* Replace the logo image here */}
+            <span className="mr-2">
               <Image src={Logo} alt="Pixels Piece Logo" width={40} height={40} />
             </span>
-            {/* Update the text here */}
             Pixels Piece
           </h1>
         </div>
-        <div className="hidden gap-8 font-semibold text-[18px] text-black-600 md:hidden lg:flex  xl:flex relative z-50">
+        <div className="hidden gap-8 font-semibold text-[18px] text-black-600 md:hidden lg:flex xl:flex relative z-50">
           <p
-            className="cursor-pointer hover:text-primary-main"
+            className="cursor-pointer hover:text-primary-main transition-colors duration-200"
             onClick={() => {
               const el = document.getElementById("who");
               if (el) {
@@ -67,7 +112,7 @@ const Topbar = () => {
             Who we are
           </p>
           <div
-            className={`flex items-center justify-center gap-1 hover:text-primary-main ${
+            className={`flex items-center justify-center gap-1 hover:text-primary-main transition-colors duration-200 ${
               openDrop && "text-primary-main"
             }`}
           >
@@ -76,23 +121,22 @@ const Topbar = () => {
               handleClose={(event) => setOpenDrop(event)}
               buttonTitleLabel="Services"
               children={
-                <div className="flex flex-col  absolute rounded-xl gap-2 p-5 left-[10%]   bg-pink-200 text-common-black mt-[40px]">
+                <div className="flex flex-col absolute rounded-xl gap-3 p-5 left-[10%] bg-white/90 backdrop-blur-md shadow-lg border border-gray-100 text-common-black mt-[40px] min-w-[250px]">
                   {services.map((item, index) => (
                     <div
                       key={index}
-                      className="flex flex-col "
+                      className="flex flex-col"
                       onClick={() => setOpenDrop(false)}
                     >
                       <h1
-                        key={index}
-                        className="font-semibold text-black-700 cursor-pointer hover:text-primary-main"
+                        className="font-semibold text-black-700 cursor-pointer hover:text-primary-main transition-colors duration-200 py-1 flex items-center"
                         onClick={() => {
                           router.push(item.path);
                         }}
                       >
-                        <span>
-                          <ArrowRight className="text-pink-500" />
-                        </span>{" "}
+                        <span className="mr-2">
+                          <ArrowRight className="text-primary-main" />
+                        </span>
                         {item.title}
                       </h1>
                     </div>
@@ -103,13 +147,13 @@ const Topbar = () => {
             {openDrop ? <ArrowDropUp /> : <ArrowDropDown />}
           </div>
           <p
-            className="cursor-pointer hover:text-primary-main"
-            onClick={() => router.push("/protfolio")}
+            className="cursor-pointer hover:text-primary-main transition-colors duration-200"
+            onClick={() => router.push("/portfolio")}
           >
             Portfolio
           </p>
           <p
-            className="cursor-pointer hover:text-primary-main"
+            className="cursor-pointer hover:text-primary-main transition-colors duration-200"
             onClick={() => {
               const el = document.getElementById("casestudy");
               if (el) {
@@ -124,40 +168,52 @@ const Topbar = () => {
         </div>
         <div>
           <CustomButton
-            className="w-[160px] rounded-lg hidden md:hidden lg:flex  xl:flex"
+            className="w-[160px] rounded-lg hidden md:hidden lg:flex xl:flex bg-primary-main hover:bg-primary-dark transition-colors duration-200"
             name="Contact us"
-            onClick={() => router.push("#contact")}
+            onClick={() => {
+              const el = document.getElementById("contact");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+              } else {
+                router.push("/#contact");
+              }
+            }}
           />
         </div>
         <div
-          className="flex sm:flex  md:flex lg:hidden   xl:hidden"
+          className="flex sm:flex md:flex lg:hidden xl:hidden cursor-pointer p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
           onClick={() => setIsOpen(!isOpen)}
         >
           <MenuIcon />
         </div>
       </div>
+      
+      {/* Mobile Menu */}
       {isOpen && (
         <>
-          {/* Fade background */}
+          {/* Backdrop with blur effect */}
           <div
-            className="fixed inset-0 bg-black bg-opacity-40 z-40 transition-opacity duration-300 animate-fade-in"
+            className="fixed inset-0 bg-black/30 backdrop-blur-4xl z-40 animate-fade-in"
             onClick={() => {
               setIsOpen(false);
               setIsOpenList(false);
               setIsService(false);
             }}
           />
-          {/* Sidebar */}
-          <div className="fixed w-[90%] h-full bg-common-white flex px-3 flex-col z-50 animate-slide-in transition-opacity duration-300 opacity-100">
-            <div className="h-[60px] border-b border-black-200 w-full flex justify-between items-center">
-              <h1 className="text-[22px] text-primary-main font-semibold">
+          
+          {/* Sidebar with glassmorphism effect */}
+          <div className="fixed w-[85%] h-full bg-white/95 backdrop-blur-3xl right-0 flex flex-col z-50 animate-slide-in-left shadow-xl border-l border-pink-500">
+            <div className="h-[70px] border-b border-pink-500 w-full flex justify-between items-center px-5 py-5">
+              <h1 className="text-[22px] text-primary-main font-semibold flex items-center">
+                <span className="mr-2">
+                  <Image src={Logo} alt="Pixels Piece Logo" width={32} height={32} />
+                </span>
                 Pixels Piece
               </h1>
               <div
-                className="cursor-pointer mr-2 "
+                className="cursor-pointer p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
                 onClick={() => {
-                  setIsOpen(!isOpen);
-
+                  setIsOpen(false);
                   setIsOpenList(false);
                   setIsService(false);
                 }}
@@ -165,228 +221,123 @@ const Topbar = () => {
                 <CloseIcon />
               </div>
             </div>
-            <div className="flex flex-col gap-2 font-semibold text-[18px] text-black-600 overflow-auto">
-              <div className="flex flex-col  mt-2">
-                <p
-                  className={`w-full border-b border-black-200 flex justify-between items-center pb-2 ${
+            
+            <div className="flex flex-col gap-0 font-semibold text-[16px] text-black-600 overflow-auto px-5 py-4">
+              <div className="flex flex-col mt-1">
+                <div
+                  className={`w-full flex justify-between ${!isOpenList && "border-b "} items-center py-4 cursor-pointer ${
                     isOpenList && "text-primary-main"
-                  } `}
+                  }`}
+                  onClick={() => setIsOpenList(!isOpenList)}
                 >
-                  Technologies{" "}
-                  <span
-                    className={`cursor-pointer text-black-700 `}
-                    onClick={() => setIsOpenList(!isOpenList)}
-                  >
-                    <AddIcon />
+                  <span>Technologies</span>
+                  <span className="text-black-700">
+                    {isOpenList ? <RemoveIcon /> : <AddIcon />}
                   </span>
-                </p>
+                </div>
                 {isOpenList && (
-                  <div
-                    className={`text-black-800 flex flex-col gap-2 py-2 animate-slide-in cursor-pointer border-b border-black-200 font-normal text-[16px]`}
-                  >
-                    <p
-                      onClick={() => {
-                        router.push("/#hire");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      {" "}
-                      <span className="text-primary-main font-bold mr-2">➤</span>
-                      React Js Development
-                    </p>
-                    <p>
-                      {" "}
-                      <span className="text-primary-main font-bold mr-2">➤</span>
-                      Next Js Development
-                    </p>
-                    <p
-                      onClick={() => {
-                        router.push("/#hire");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      {" "}
-                      <span className="text-primary-main font-bold mr-2">➤</span>
-                      Vue Js Development
-                    </p>
-                    <p
-                      onClick={() => {
-                        router.push("/#hire");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      {" "}
-                      <span className="text-primary-main font-bold mr-2">➤</span>
-                      Angular Js Development
-                    </p>
-                    <p
-                      onClick={() => {
-                        router.push("/#hire");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      {" "}
-                      <span className="text-primary-main font-bold mr-2">➤</span>
-                      Node Js Development
-                    </p>
-                    <h1 className=" my-1 text-black-800 font-medium text-[18px]">
-                      Mobile Development Technology
-                    </h1>
-                    <p
-                      onClick={() => {
-                        router.push("/#hire");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      {" "}
-                      <span className="text-primary-main font-bold mr-2">➤</span>
-                      Flutter Development
-                    </p>
-                    <p
-                      onClick={() => {
-                        router.push("/#hire");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      {" "}
-                      <span className="text-primary-main font-bold mr-2">➤</span>
-                      React Native Development
-                    </p>
-                    <h1 className="text-[18px] my-1   text-black-800 font-medium">
-                      Dev Ops
-                    </h1>
-                    <p
-                      onClick={() => {
-                        router.push("/#hire");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      {" "}
-                      <span className="text-primary-main font-bold mr-2">➤</span>
-                      Docker
-                    </p>
-                    <p
-                      onClick={() => {
-                        router.push("/#hire");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      {" "}
-                      <span className="text-primary-main font-bold mr-2">➤</span>
-                      Kubernetes
-                    </p>
-                    <p
-                      onClick={() => {
-                        router.push("/#hire");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      {" "}
-                      <span className="text-primary-main font-bold mr-2">➤</span>
-                      Amazon Web Services
-                    </p>
-                    <p
-                      onClick={() => {
-                        router.push("/#hire");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      {" "}
-                      <span className="text-primary-main font-bold mr-2">➤</span>
-                      Google Cloud
-                    </p>
+                  <div className="text-black-700 flex flex-col gap-2 py-2 pl-4 animate-slide-in cursor-pointer font-normal text-[15px] border-l-2 border-primary-main/20 ml-1">
+                    {technologies.map((category, catIndex) => (
+                      <div key={catIndex} className="mb-3">
+                        <h3 className="text-black-800 font-medium text-[15px] mb-2">
+                          {category.category}
+                        </h3>
+                        {category.items.map((item, itemIndex) => (
+                          <p
+                            key={itemIndex}
+                            className="py-1.5 pl-3 hover:text-primary-main transition-colors duration-200 flex items-center"
+                            onClick={() => {
+                              router.push("/#hire");
+                              setIsOpen(false);
+                            }}
+                          >
+                            <span className="text-primary-main mr-2">•</span>
+                            {item}
+                          </p>
+                        ))}
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
-              <div className="flex flex-col  mt-2">
-                <p
-                  className={`w-full border-b border-black-200 flex justify-between items-center pb-2 ${
+              
+              <div className="flex flex-col mt-1">
+                <div
+                  className={`w-full flex justify-between items-center py-4 cursor-pointer ${
                     isService && "text-primary-main"
                   }`}
+                  onClick={() => setIsService(!isService)}
                 >
-                  Services{" "}
-                  <span
-                    className="cursor-pointer text-black-700"
-                    onClick={() => setIsService(!isService)}
-                  >
-                    <AddIcon />
+                  <span>Services</span>
+                  <span className="text-black-700">
+                    {isService ? <RemoveIcon /> : <AddIcon />}
                   </span>
-                </p>
+                </div>
                 {isService && (
-                  <div className="text-black-800 flex flex-col gap-2 animate-slide-in cursor-pointer border-b border-black-200 font-normal text-[16px] py-2 ">
-                    <p
-                      onClick={() => {
-                        router.push("/services/digital-product-design");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      <span className="text-primary-main font-bold mr-2">➤</span>{" "}
-                      Digital Product Design
-                    </p>
-                    <p
-                      onClick={() => {
-                        router.push("/services/software-architecture");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      <span className="text-primary-main font-bold mr-2">➤</span>{" "}
-                      Software Architecture
-                    </p>
-                    <p
-                      onClick={() => {
-                        router.push("/services/engineering-devops");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      <span className="text-primary-main font-bold mr-2">➤</span>{" "}
-                      Engineering & DevOps
-                    </p>
-                    <p
-                      onClick={() => {
-                        router.push("/services/mobile-app-development");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      <span className="text-primary-main font-bold mr-2">➤</span>{" "}
-                      Mobile App Development
-                    </p>
+                  <div className="text-black-700 mb-5 flex flex-col gap-2 py-2 pl-4 animate-slide-in cursor-pointer font-normal text-[15px] border-l-2 border-primary-main/20 ml-1">
+                    {services.map((service, index) => (
+                      <p
+                        key={index}
+                        className="py-1.5 pl-3  hover:text-primary-main transition-colors duration-200 flex items-center"
+                        onClick={() => {
+                          router.push(service.path);
+                          setIsOpen(false);
+                        }}
+                      >
+                        <span className="text-primary-main mr-2">•</span>
+                        {service.title}
+                      </p>
+                    ))}
                   </div>
                 )}
               </div>
+              
               <p
-                className="border-b border-black-200 pb-2 "
+                className="py-4  border-t border-gray-200/50 cursor-pointer hover:text-primary-main transition-colors duration-200"
                 onClick={() => {
-                  router.push("/protfolio");
-                  setIsOpen(!isOpen);
+                  router.push("/portfolio");
+                  setIsOpen(false);
                 }}
               >
                 Portfolio
               </p>
+              
               <p
-                className="border-b border-black-200 pb-2"
+                className="py-4 border-t border-gray-200/50 cursor-pointer hover:text-primary-main transition-colors duration-200"
                 onClick={() => {
-                  router.push("/#casestudy");
-                  setIsOpen(!isOpen);
+                  const el = document.getElementById("casestudy");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                  }
+                  setIsOpen(false);
                 }}
               >
                 Case Studies
               </p>
+              
               <p
-                className="border-b border-black-200 pb-2"
+                className="py-4 border-t border-gray-200/50 cursor-pointer hover:text-primary-main transition-colors duration-200"
                 onClick={() => {
-                  router.push("/#who");
-                  setIsOpen(!isOpen);
+                  const el = document.getElementById("who");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                  }
+                  setIsOpen(false);
                 }}
               >
                 Who we are
               </p>
-              <div>
+              
+              <div className="pt-4 border-t border-gray-200 ">
                 <CustomButton
-                  className="w-[160px] rounded-lg mt-2 mb-2"
+                  className="w-full rounded-lg bg-primary-main transition-colors duration-200"
                   name="Contact us"
                   onClick={() => {
-                    router.push("#contact");
-                    setIsOpen(!isOpen);
+                    const el = document.getElementById("contact");
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth" });
+                    }
+                    setIsOpen(false);
                   }}
                 />
               </div>
