@@ -121,7 +121,7 @@ const Topbar = () => {
               handleClose={(event) => setOpenDrop(event)}
               buttonTitleLabel="Services"
               children={
-                <div className="flex flex-col absolute rounded-xl gap-3 p-5 left-[10%] bg-white/90 backdrop-blur-md shadow-lg border border-gray-100 text-common-black mt-[40px] min-w-[250px]">
+                <div className="flex flex-col absolute rounded-xl gap-3 p-5 left-[10%] bg-pink-200  shadow-lg border border-pink-400 text-common-black mt-[40px] min-w-[250px]">
                   {services.map((item, index) => (
                     <div
                       key={index}
