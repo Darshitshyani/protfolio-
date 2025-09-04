@@ -155,15 +155,10 @@ const Topbar = () => {
           <p
             className="cursor-pointer hover:text-primary-main transition-colors duration-200"
             onClick={() => {
-              const el = document.getElementById("casestudy");
-              if (el) {
-                el.scrollIntoView({ behavior: "smooth" });
-              } else {
-                router.push("/#casestudy");
-              }
-            }}
+                  router.push("/testimonial")
+                }}
           >
-            Case Studies
+            Testimonial
           </p>
         </div>
         <div>
@@ -305,14 +300,10 @@ const Topbar = () => {
               <p
                 className="py-4 border-t border-gray-200/50 cursor-pointer hover:text-primary-main transition-colors duration-200"
                 onClick={() => {
-                  const el = document.getElementById("casestudy");
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth" });
-                  }
-                  setIsOpen(false);
+                  router.push("/testimonial")
                 }}
               >
-                Case Studies
+                Testimonial
               </p>
               
               <p
