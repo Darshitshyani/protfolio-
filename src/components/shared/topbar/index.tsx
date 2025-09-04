@@ -156,6 +156,7 @@ const Topbar = () => {
             className="cursor-pointer hover:text-primary-main transition-colors duration-200"
             onClick={() => {
                   router.push("/testimonial")
+
                 }}
           >
             Testimonial
@@ -301,6 +302,7 @@ const Topbar = () => {
                 className="py-4 border-t border-gray-200/50 cursor-pointer hover:text-primary-main transition-colors duration-200"
                 onClick={() => {
                   router.push("/testimonial")
+                   setIsOpen(false);
                 }}
               >
                 Testimonial

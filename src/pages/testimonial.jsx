@@ -172,7 +172,7 @@ leading-[1.6em] font-[Arial]
                 ref={scrollContainerRef}
                 className="
                  
-                  md:grid md:grid-cols-2 md:gap-6
+                  md:grid md:grid-cols-2 
                   gap-6
                 place-items-center
                   w-full
@@ -183,7 +183,7 @@ leading-[1.6em] font-[Arial]
                   <div
                     key={index}
                     className="
-                      bg-white p-6 rounded-xl h-[290px] border border-black-200 shadow-md relative hover:shadow-xl transition-shadow
+                      bg-white p-6 mt-[20px] md:mt-0 rounded-xl h-[290px] border border-black-200 shadow-md relative hover:shadow-xl transition-shadow
                       w-full max-w-xs md:max-w-none
                     "
                   >
