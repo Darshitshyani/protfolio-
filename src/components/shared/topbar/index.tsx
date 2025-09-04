@@ -201,7 +201,7 @@ const Topbar = () => {
 					/>
 					{/* Sidebar with slide-in/out animation */}
 					<div
-						className={`fixed w-[85%] min-h-screen bg-white/95 backdrop-blur-3xl right-0 flex flex-col z-50 shadow-xl border-l border-pink-500
+						className={`fixed w-[85%] h-full bg-white/95 backdrop-blur-3xl right-0 flex flex-col z-50 shadow-xl border-l border-pink-500
       ${isClosing ? "animate-slide-out-right" : "animate-slide-in-left"}
     `}
 					>
