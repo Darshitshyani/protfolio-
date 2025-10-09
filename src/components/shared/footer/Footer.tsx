@@ -71,7 +71,7 @@ const Footer = () => {
             <span className=" border p-2 rounded-full border-black-200 shadow-xl bg-common-white">
               <ForwardToInboxIcon />
             </span>
-            pixelspieceinfo@gmail.com
+            darshit@pixelspiece.com
           </p>
           <p>
             <a
