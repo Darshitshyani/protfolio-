@@ -50,6 +50,7 @@ const Projects = ({index}) => {
   
     const projects = [
       
+      
      {
       title: "Gabble ai",
       images: [g1, g2, g3, g4],

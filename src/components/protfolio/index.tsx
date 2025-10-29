@@ -41,6 +41,8 @@ import blue1 from "@/untils/images/bluesky/blue1.png"
 import blue2 from "@/untils/images/bluesky/blue2.png"
 import blue3 from "@/untils/images/bluesky/blue3.png"
 import blue4 from "@/untils/images/bluesky/blue4.png"
+import blinq from "@/untils/images/blinq.png"
+import blinq2 from "@/untils/images/blinq2.png"
 import Image from "next/image";
 import { url } from "inspector";
 import { useRouter } from "next/router";
@@ -50,6 +52,14 @@ import { Button } from "@mui/material";
 
 const Protfolio = () => {
     const projects = [
+       {
+        title: "Blinq Mobility",
+        images: [blinq,blinq2],
+        directurl: "https://blinqmobility.com/",
+        description: "Drive the future today with Blinq Mobility’s smart, swappable-battery EV pods urban mobility made sustainable and affordable.",
+    
+  
+      },
         
        {
         title: "Gabble ai",
@@ -353,7 +363,14 @@ const Protfolio = () => {
         <p className="flex-grow mb-2 text-black-700 text-md ">{project.description}</p>
         <p
           className="cursor-pointer text-center rounded-lg text-black-700 border border-black-300 bg-black-100 border border-black-200 w-full mt-2 py-2"
-          onClick={() => router.push(`projects/${index}`)}
+          onClick={() => {
+  if (project.directurl) {
+    window.open(project.directurl, "_blank");
+  } else {
+    router.push(`/projects/${index}`);
+  }
+}}
+
         >
           View more<span ><LaunchIcon className="ml-1" fontSize="small"/></span>
         </p>
