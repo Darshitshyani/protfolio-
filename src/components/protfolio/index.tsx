@@ -56,119 +56,33 @@ const Protfolio = () => {
         title: "Blinq Mobility",
         images: [blinq,blinq2],
         directurl: "https://blinqmobility.com/",
-        description: "Drive the future today with Blinq Mobility’s smart, swappable-battery EV pods urban mobility made sustainable and affordable.",
-    
-  
+        description: "Drive the future today with Blinq Mobility’s smart, swappable-battery EV pods urban mobility made sustainable and affordable.", 
       },
-        
        {
-        title: "Gabble ai",
-        images: [g1, g2, g3, g4],
-        url: "https://gabble.ai/",
-        description: "An AI-powered personal speaking coach offering 360° speech analysis and personalized feedback to improve fluency, pronunciation, grammar, and confidence in a judgment-free space.",
-      features: [
-        "360° speech assessment (speaking, pronunciation, fluency, grammar)",
-        "Real-time feedback and instant grading",
-        "Support for IELTS, TOEFL exam preparation",
-        "Interview practice with common questions and AI simulations",
-        "Reading, listening, vocabulary practice",
-        "Progress tracking over time",
-        "Contextual vocabulary building and accent training",
-        "Supports multiple languages"
-      ],
-         "technologies": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "React",
-        "Python"
-      ],
-  
-      },
+    title: "Shoprs AI",
+    images: [sp1, sp2, sp3],
+    directurl: "https://shoprs.ai/",
+    description: "A static landing website designed for Shoprs AI to present their AI-driven shopping solutions with a modern and engaging interface.",
+   
+  },
+        
+     
        {
     title: "BlueSky-NW",
     images: [blue1, blue2, blue3, blue4],
-    url: "https://www.bluesky-nw.com/",
+    directurl: "https://bluesky-nw.com/",
     description: "A static corporate website built for BlueSky-NW to showcase their IT consulting, cloud, AI, and data analytics services with a clean and professional design.",
-    features: [
-      "Responsive static website with modern layout",
-      "Clean UI to highlight company services and solutions",
-      "Multi-page structure (Home, About, Services, Contact)",
-      "SEO-friendly meta tags and structure",
-      "Optimized images and fast loading speed",
-      "Cross-browser compatibility",
-      "Integration of contact form (non-functional/static)",
-      "Consistent branding and professional styling"
-    ],
-    technologies: [
-      "Wix",
-      "Figma",
-      "Illustrator"    
-    ]
+   
   },
-     {
-    title: "Calcue",
-    images: [cal1, cal2, cal3],
-    url: "https://calcue.vercel.app/",
-    description: "A static and responsive website built for Calcue with a modern design to present content clearly and professionally.",
-    features: [
-      "Responsive static website with clean UI",
-      "Modern and user-friendly layout",
-      "SEO-friendly structure",
-      "Optimized images and fast loading speed",
-      "Cross-browser compatibility",
-      "Consistent branding and styling",
-      "Deployed on Vercel for reliable hosting"
-    ],
-    technologies: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "React",
-      "Vercel"
-    ]
-  },
+   
       {
     title: "Neha Fiber",
     images: [n1, n2, n3, n4, n5],
-    url: "https://nehafiber.com/",
+    directurl: "https://nehafiber.com/",
     description: "A static business website built for Neha Fiber to showcase their products and services with a simple, user-friendly, and professional design.",
-    features: [
-      "Responsive static website for multiple devices",
-      "Modern layout to highlight company offerings",
-      "SEO-friendly structure and metadata",
-      "Optimized images for fast performance",
-      "Cross-browser compatibility",
-      "Consistent branding and visual styling",
-      "Deployed for stable online presence"
-    ],
-    technologies: [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ]
+  
   },
-      {
-    title: "Shoprs AI",
-    images: [sp1, sp2, sp3],
-    url: "https://shoprs.ai/",
-    description: "A static landing website designed for Shoprs AI to present their AI-driven shopping solutions with a modern and engaging interface.",
-    features: [
-      "Responsive static landing page",
-      "Clean and modern UI showcasing company solutions",
-      "Multi-section layout (Home, Features, About, Contact)",
-      "SEO-friendly page structure",
-      "Optimized assets for faster performance",
-      "Cross-browser compatibility",
-      "Brand-focused styling for consistency",
-      "Deployed for stable online accessibility"
-    ],
-    technologies: [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ]
-  },
+     
     {
     title: "VIZU Admin Panel",
     images: [a1, a2, a3, a4, a5],
@@ -192,6 +106,30 @@ const Protfolio = () => {
       "Firebase"
     ]
   }
+    ,{
+        title: "Gabble ai",
+        images: [g1, g2, g3, g4],
+        url: "https://gabble.ai/",
+        description: "An AI-powered personal speaking coach offering 360° speech analysis and personalized feedback to improve fluency, pronunciation, grammar, and confidence in a judgment-free space.",
+      features: [
+        "360° speech assessment (speaking, pronunciation, fluency, grammar)",
+        "Real-time feedback and instant grading",
+        "Support for IELTS, TOEFL exam preparation",
+        "Interview practice with common questions and AI simulations",
+        "Reading, listening, vocabulary practice",
+        "Progress tracking over time",
+        "Contextual vocabulary building and accent training",
+        "Supports multiple languages"
+      ],
+         "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React",
+        "Python"
+      ],
+  
+      }
   ,
     {
     title: "Animals Food Store",
@@ -262,26 +200,7 @@ const Protfolio = () => {
   }
   ,
     
-      {
-    title: "Devinci",
-    images: [devc1, devc2, devc3],
-    url: null,
-    description: "A static company website created for Devinci with a professional and modern design to showcase their business offerings.",
-    features: [
-      "Responsive static website with clean design",
-      "Multi-page layout (Home, About, Services, Contact)",
-      "SEO-friendly structure and metadata",
-      "Optimized images and smooth navigation",
-      "Cross-browser compatibility",
-      "Consistent branding and styling across pages",
-      "Fast loading and performance-focused build"
-    ],
-    technologies: [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ]
-  }
+  
   
     ];
 

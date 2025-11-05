@@ -4,7 +4,6 @@ import Projects from '../../components/projects';
 
 const Index = () => {
     const router = useRouter()
-  console.log(router.query.index)
   return (
     <div >
       <Projects index={router.query.index}/>
