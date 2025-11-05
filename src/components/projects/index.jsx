@@ -274,7 +274,7 @@ const Projects = ({index}) => {
 }
 
   ];
-    const projectDetails = projects[+index];
+    const projectDetails = projects[+index - 1];
 
     
   return (
