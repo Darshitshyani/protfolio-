@@ -13,8 +13,8 @@ const testimonials = [
   },
   {
     name: "Nikesh Bisht",
-    image: "/images/client2.png", // moved to public/images/
-    url: "https://res.cloudinary.com/doze8mibh/video/upload/v1761716976/blinqmobility_axyxpm.mp4",
+    image: "/images/client2.png",
+    url: "/blinqmobility.mp4",
     position: "Founder, Blinq mobility",
     feedback:
       "Darshit did an outstanding job redesigning the Blinq Mobility website. His modern design approach and attention to detail greatly enhanced our brand presence. Highly recommended!",
@@ -62,17 +62,22 @@ const testimonials = [
   },
 ];
 
+const DOUBLED_TESTIMONIALS = [...testimonials, ...testimonials];
+
 const Testimonial = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [displayedTestimonials, setDisplayedTestimonials] = useState([]);
+  const [displayedTestimonials] = useState(DOUBLED_TESTIMONIALS);
   const [videoIndex, setVideoIndex] = useState(0);
   const scrollContainerRef = useRef(null);
   const animationFrameRef = useRef(null);
   const scrollPositionRef = useRef(0);
-  const SCROLL_SPEED = 0.8;
-  // pause state handled via cancelling/starting RAF
+  const SCROLL_SPEED = 0.5;
+  const halfHeightRef = useRef(null);
+
   const startAnimation = () => {
-    if (!animationFrameRef.current) animationFrameRef.current = requestAnimationFrame(animateScroll);
+    if (!animationFrameRef.current) {
+      animationFrameRef.current = requestAnimationFrame(animateScroll);
+    }
   };
   const pauseAnimation = () => {
     if (animationFrameRef.current) {
@@ -82,16 +87,25 @@ const Testimonial = () => {
   };
   const resumeAnimation = () => startAnimation();
 
-  // use a function declaration so startAnimation/resume can call it
   function animateScroll() {
     const el = scrollContainerRef.current;
     if (!el) return;
+
+    // Cache half height - recompute when scrollHeight changes (e.g. resize)
+    const totalHeight = el.scrollHeight;
+    if (halfHeightRef.current === null || Math.abs(halfHeightRef.current - totalHeight / 2) > 10) {
+      halfHeightRef.current = totalHeight / 2;
+    }
+    const halfHeight = halfHeightRef.current;
+
     scrollPositionRef.current -= SCROLL_SPEED;
-    // reset when one set scrolled out
-    if (Math.abs(scrollPositionRef.current) >= el.scrollHeight / 2) {
+
+    // Reset when we've scrolled one full set (seamless loop)
+    if (Math.abs(scrollPositionRef.current) >= halfHeight) {
       scrollPositionRef.current = 0;
     }
-    el.style.transform = `translateY(${scrollPositionRef.current}px)`;
+
+    el.style.transform = `translate3d(0, ${scrollPositionRef.current}px, 0)`;
     animationFrameRef.current = requestAnimationFrame(animateScroll);
   }
 
@@ -101,20 +115,22 @@ const Testimonial = () => {
  
    const videodetails = testimonials[videoIndex];
  
-   // ✅ Infinite scroll setup
-   useEffect(() => {
-     setDisplayedTestimonials([...testimonials, ...testimonials]);
- 
-     const scrollContainer = scrollContainerRef.current;
-     if (!scrollContainer) return;
-     // start the loop
-     startAnimation();
- 
-     return () => {
-       // clean up RAF on unmount
-       pauseAnimation();
-     };
-   }, []);
+  // Start animation after DOM has laid out (content is visible)
+  useEffect(() => {
+    const startAfterLayout = () => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const el = scrollContainerRef.current;
+          if (el && el.scrollHeight > 0) {
+            halfHeightRef.current = el.scrollHeight / 2;
+            startAnimation();
+          }
+        });
+      });
+    };
+    startAfterLayout();
+    return () => pauseAnimation();
+  }, []);
 
   return (
     <div className="py-16 px-4 bg-gradient-to-br from-slate-50 to-slate-100 font-sans pt-[120px]">
@@ -132,7 +148,7 @@ const Testimonial = () => {
                 <div
                   className="w-full h-full flex flex-col justify-between bg-cover bg-center cursor-pointer"
                   style={{
-                    backgroundImage: videodetails.image
+                    backgroundImage: videodetails?.image
                       ? `url(${videodetails.image})`
                       : "linear-gradient(135deg, #111827, #1f2937)",
                   }}
@@ -190,7 +206,7 @@ const Testimonial = () => {
               >
               <div
                 ref={scrollContainerRef}
-                className="md:grid md:grid-cols-2 gap-6 place-items-center w-full transition-all"
+                className="md:grid md:grid-cols-2 gap-6 place-items-start w-full"
               >
                 {displayedTestimonials.map((testimonial, index) => (
                   <div
@@ -213,7 +229,7 @@ const Testimonial = () => {
                           <span
                             className="flex items-center justify-center ml-3 text-primary-main cursor-pointer"
                             onClick={() => {
-                              setVideoIndex(index);
+                              setVideoIndex(index % testimonials.length);
                               setIsVideoPlaying(false);
                             }}
                           >
