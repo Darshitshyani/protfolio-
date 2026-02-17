@@ -171,7 +171,7 @@ const Topbar = () => {
 				</div>
 				<div>
 					<CustomButton
-						className="w-[160px] rounded-lg hidden md:hidden lg:flex xl:flex bg-primary-main hover:bg-primary-dark transition-colors duration-200"
+						className="w-[160px] rounded-lg hidden md:hidden lg:flex xl:flex bg-primary-main transition-colors duration-200"
 						name="Contact us"
 						onClick={() => {
 							const el = document.getElementById("contact");
