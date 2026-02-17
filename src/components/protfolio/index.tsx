@@ -1,10 +1,5 @@
 import React from "react";
 import Slider from "react-slick";
-import a1 from "@/untils/images/admin/a1.jpeg";
-import a2 from "@/untils/images/admin/a2.jpeg";
-import a3 from "@/untils/images/admin/a3.jpeg";
-import a4 from "@/untils/images/admin/a4.jpeg";
-import a5 from "@/untils/images/admin/a5.jpeg";
 import h1 from "@/untils/images/hotel/h1.jpeg";
 import h2 from "@/untils/images/hotel/h2.jpeg";
 import h3 from "@/untils/images/hotel/h3.jpeg";
@@ -50,6 +45,9 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import { Button } from "@mui/material";
 
 
+const getProjectSlug = (title: string) =>
+  title.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+
 const Protfolio = () => {
     const projects = [
        {
@@ -84,29 +82,6 @@ const Protfolio = () => {
   },
      
     {
-    title: "VIZU Admin Panel",
-    images: [a1, a2, a3, a4, a5],
-    url: "https://fajr-cb5f5.firebaseapp.com/",
-    description: "An admin dashboard built for VIZU to manage data, monitor activities, and control system operations with a clean and intuitive interface.",
-    features: [
-      "Responsive admin panel with dashboard overview",
-      "User management (view, add, edit, delete users)",
-      "Data tables with search, sort, and filter options",
-      "Authentication and secure access",
-      "Interactive charts and visual reports",
-      "Form handling for data input and updates",
-      "Real-time data updates integrated with Firebase",
-      "Cross-browser compatibility and responsive design"
-    ],
-    technologies: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "React",
-      "Firebase"
-    ]
-  }
-    ,{
         title: "Gabble ai",
         images: [g1, g2, g3, g4],
         url: "https://gabble.ai/",
@@ -286,7 +261,7 @@ const Protfolio = () => {
   if (project.directurl) {
     window.open(project.directurl, "_blank");
   } else {
-    router.push(`/projects/${index}`);
+    router.push(`/projects/${getProjectSlug(project.title)}`);
   }
 }}
 

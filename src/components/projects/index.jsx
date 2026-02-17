@@ -274,7 +274,13 @@ const Projects = ({index}) => {
 }
 
   ];
-    const projectDetails = projects[+index - 1];
+
+  const getProjectSlug = (title) =>
+    title.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+
+  const projectDetails = projects.find(
+    (p) => getProjectSlug(p.title) === index
+  );
 
     
   return (
