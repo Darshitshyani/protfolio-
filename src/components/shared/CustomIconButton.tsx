@@ -14,7 +14,7 @@ const CustomIconButton = (props: Props) => {
   return (
     <IconButton
       onClick={handleEvent ? handleEvent : undefined}
-      className={`px-3 bg-white rounded-md ${style}`}
+      className={`px-3 bg-common-white rounded-md ${style}`}
       {...restProps}
     >
       {Icon && <Icon className="text-black text-2xl" />}

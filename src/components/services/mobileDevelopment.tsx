@@ -2,6 +2,24 @@ import Circle from "@/untils/icons/Circle";
 import { M1, M2 } from "@/untils/images";
 import Image from "next/image";
 import React from "react";
+
+import {
+  AnimatedGradientText,
+  FadeIn,
+  Reveal,
+  SlideIn,
+  SplitReveal,
+  Stagger,
+  StaggerItem,
+} from "@/components/shared/motion";
+import {
+  AuroraBackground,
+  GlowOrb,
+  GridPattern,
+  SoftBand,
+} from "@/components/shared/backgrounds";
+import { GiantWord, Parallax } from "@/components/shared/scroll";
+
 const expertiseHighlights = [
   {
     title: "Diverse Domain Expertise",
@@ -48,75 +66,168 @@ const softwareArchitecturePrinciples = [
 ];
 const MobileDevelopment = () => {
   return (
-    <div className="mt-[80px] ">
-      <div className="h-[150px]  bg-pink-400  animate-slide-in w-full flex justify-center items-center ">
-        <h1 className="text-[20px] md:text-[30px] font-semibold text-primary-light ">
-          Mobile App Development
-        </h1>
-      </div>
-      <div className="p-8 xl:pl-[100px] animate-slide-out">
-        <div className="w-[50px] md:w-[80px] border-2 my-6 text-pink-500 mx-auto "></div>
-        <h1 className="text-[20px] md:text-[25px] text-center ">
-          Pixels Piece
-        </h1>
-        <h1 className="text-[25px] md:text-[35px] font-semibold text-center ">
-          Elevating your brand with stunning mobile app designs and seamless
-          user experiences.
-        </h1>
-      </div>
-      <div className="px-8 xl:pl-[100px]  py-8 gap-2 animate-slide-in">
-        <h1 className="text-[25px] md:text-[30px] lg:text-[35px] font-bold">
-          <span className="text-pink-500 "> Mobile app architecture </span>{" "}
-          Stages
-        </h1>
-        <p className="text-black-600 w-full md:w-full lg:w-1/2 xl:w-1/2">
-          Mobile app architecture involves designing and structuring the core
-          components of a mobile application, defining their relationships and
-          interactions to ensure scalability, maintainability, and optimal
-          performance across devices.
-        </p>
-        <div className=" grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-5 mt-5 ">
-          <Image src={M2} alt="not found" className="w-full  rounded-xl" />
+    <div className="mt-[80px] w-full">
+      {/* ── hero ───────────────────────────────────────────────────────── */}
+      <section className="relative w-full overflow-hidden">
+        {/* fade="both": this hero starts ~80px down the document, not at y=0, and
+            the section clips with overflow-hidden. The topbar pill only covers
+            5%–95% of the width, so an unfeathered top edge draws a visible
+            horizontal cut across the outer strips at every viewport height. */}
+        <AuroraBackground variant="blue" intensity={0.45} fade="both" />
+        <GridPattern className="text-black-300" opacity={0.16} fade="edges" />
+        <div className="relative z-10 mx-auto flex w-full max-w-[1100px] flex-col items-center px-4 py-[60px] text-center md:px-[50px] md:py-[80px] lg:px-[100px]">
+          <FadeIn>
+            <div
+              aria-hidden="true"
+              className="mx-auto mb-6 w-[50px] border-2 border-pink-500 md:w-[80px]"
+            />
+          </FadeIn>
+          <Reveal>
+            <p className="text-[18px] text-black-800 md:text-[22px]">
+              Pixels Piece
+            </p>
+          </Reveal>
+          <h1 className="mt-2 font-display text-[28px] font-bold leading-[1.14] tracking-tight text-common-black md:text-[40px] lg:text-[48px]">
+            <SplitReveal text="Mobile App" />{" "}
+            <AnimatedGradientText className="font-bold">
+              Development
+            </AnimatedGradientText>
+          </h1>
+          <p className="mx-auto mt-5 max-w-[820px] font-display text-[18px] font-semibold tracking-tight text-black-800 md:text-[24px] lg:text-[28px]">
+            <SplitReveal
+              text="Elevating your brand with stunning mobile app designs and seamless user experiences."
+              delay={0.25}
+            />
+          </p>
+        </div>
+      </section>
 
-          <div className=" flex gap-2 flex-col ">
-            {softwareArchitecturePrinciples.map((item, index) => (
-              <div className="w-full border-2 border-pink-500 rounded-xl  bg-common-white p-2 flex flex-col shadow-lg ">
-                <h1 className="text-[20px] md:text-[20px] font-semibold flex gap-2 items-center">
-                  <span className="text-primary-main font-bold">➤</span>{" "}
-                  {item.title}
-                </h1>
+      {/* ── stages ─────────────────────────────────────────────────────── */}
+      <section className="relative w-full overflow-hidden px-4 py-[50px] md:px-[50px] lg:px-[100px]">
+        {/* The tint rides its own feathered layer. `band-soft` on the <section>
+            masks every painted descendant, so with only 50px of padding it
+            would render this heading at ~35% opacity and the last row of cards
+            at less than half. Only the tint feathers now. */}
+        <SoftBand className="bg-black-100/50" />
+        {/* The ONE giant word on this page — the hero already spends the page's
+            single aurora, and the global AmbientBackground carries depth
+            everywhere else. It rides this section because on xl a lone image
+            sits opposite a taller card column, so the word surfaces in the
+            empty space below the image and through the card gutters instead of
+            under body copy; the heading and intro sit above the centred word,
+            and every card is an opaque `bg-common-white` surface that rides up
+            over it.
 
-                <p className="pl-8 text-black-700 font-medium text-[14px] md:text-[15px] lg:text-[16px]">
-                  {item.description}
-                </p>
-              </div>
-            ))}
+            Placed directly rather than through <ScrollStage> so <SoftBand> can
+            stay a direct child of the section: inside ScrollStage's
+            `relative z-10` wrapper the tint would shrink to the padding box and
+            draw exactly the horizontal seam it exists to prevent. That makes
+            the clipping this section's own job — `overflow-hidden` above is
+            mandatory, because the word is deliberately wider than the viewport
+            and an unclipped one scrolls the whole page sideways on mobile.
+
+            Same speed and same tone as the word on the other four service
+            pages. */}
+        <GiantWord
+          word="MOBILE"
+          speed={0.6}
+          align="center"
+        />
+        <div className="relative z-10 mx-auto w-full max-w-[1200px]">
+          <h2 className="font-display text-[25px] font-bold tracking-tight text-common-black md:text-[30px] lg:text-[35px]">
+            <SplitReveal text="Mobile app architecture" className="text-pink-500" />{" "}
+            <SplitReveal text="Stages" delay={0.14} />
+          </h2>
+          <FadeIn delay={0.08}>
+            <p className="mt-3 w-full text-black-600 lg:w-1/2">
+              Mobile app architecture involves designing and structuring the
+              core components of a mobile application, defining their
+              relationships and interactions to ensure scalability,
+              maintainability, and optimal performance across devices.
+            </p>
+          </FadeIn>
+          <div className="mt-5 grid grid-cols-1 items-start gap-5 xl:grid-cols-2">
+            <SlideIn from="left" className="w-full">
+              <Image
+                src={M2}
+                alt="Mobile app screens laid out during development"
+                className="h-auto w-full rounded-xl border border-black-200"
+              />
+            </SlideIn>
+
+            <Stagger className="flex flex-col gap-2" stagger={0.07}>
+              {softwareArchitecturePrinciples.map((item) => (
+                <StaggerItem
+                  key={item.title}
+                  className="flex w-full flex-col rounded-xl border-2 border-pink-500 bg-common-white p-2 shadow-lg"
+                >
+                  <h3 className="flex items-center gap-2 text-[20px] font-semibold text-common-black">
+                    <span aria-hidden="true" className="font-bold text-primary-main">
+                      ➤
+                    </span>{" "}
+                    {item.title}
+                  </h3>
+
+                  <p className="pl-8 text-[14px] font-medium text-black-700 md:text-[15px] lg:text-[16px]">
+                    {item.description}
+                  </p>
+                </StaggerItem>
+              ))}
+            </Stagger>
           </div>
         </div>
-      </div>
-      <div className="w-full  py-[50px] p-8 xl:pl-[100px] ">
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 w-full place-items-center">
-          <div className=" w-full  items-start  text-start">
-            <h1 className="text-[25px] text-center md:text-left lg:text-[35px] font-bold">
-              Why Mobile Development For Your Business
-            </h1>
-            {expertiseHighlights.map((item, index) => (
-              <>
-                <p className="mt-6 font-medium text-[20px] ">{item.title}</p>
-                <p className=" text-black-800 text-[16px] md:text-[18px]">
-                  {item.description}
-                </p>
-              </>
-            ))}
+      </section>
+
+      {/* ── why it matters ─────────────────────────────────────────────── */}
+      <section className="w-full px-4 py-[50px] md:px-[50px] lg:px-[100px]">
+        <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 place-items-center gap-8 xl:grid-cols-2">
+          <div className="w-full items-start text-start">
+            <h2 className="text-center font-display text-[25px] font-bold tracking-tight text-common-black md:text-left lg:text-[35px]">
+              <SplitReveal text="Why Mobile Development For Your Business" />
+            </h2>
+            {/* The gentle lag rides its OWN wrapper. <Stagger> is a motion.div:
+                GSAP writes `transform` for data-speed and motion writes
+                `transform` for the entrance, so merging the two onto one node
+                would let whichever writes last silently kill the other. It sits
+                on THIS grid rather than on the stage cards because this section
+                is not clipped — a lagging column inside the overflow-hidden
+                giant-word section would have its bottom edge cut off at the
+                extremes of the scroll. */}
+            <Parallax speed={0.95} className="w-full">
+              <Stagger className="w-full" stagger={0.07}>
+                {expertiseHighlights.map((item) => (
+                  <StaggerItem key={item.title}>
+                    <p className="mt-6 text-[20px] font-medium text-common-black">
+                      {item.title}
+                    </p>
+                    <p className="text-[16px] text-black-800 md:text-[18px]">
+                      {item.description}
+                    </p>
+                  </StaggerItem>
+                ))}
+              </Stagger>
+            </Parallax>
           </div>
-          <div className="w-fit  my-3">
-            <Image src={M1} alt="not found" className="w-full h-auto" />
-          </div>
+          <SlideIn
+            from="right"
+            className="relative my-3 w-full md:w-[80%] xl:w-full"
+          >
+            <GlowOrb
+              color="blue"
+              size={420}
+              className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            />
+            <Image
+              src={M1}
+              alt="Person using a mobile application on a smartphone"
+              className="relative z-10 h-auto w-full rounded-xl border border-black-200"
+            />
+          </SlideIn>
         </div>
         <div className="mt-3">
           <Circle />
         </div>
-      </div>
+      </section>
     </div>
   );
 };

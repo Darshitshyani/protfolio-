@@ -5,6 +5,145 @@
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
 
+/* ── Theme tokens ─────────────────────────────────────────────────────────
+   RGB triplets consumed by tailwind.config.ts via rgb(var(--x) / <alpha>).
+   Light theme on :root, dark theme on html.dark. The site defaults to DARK —
+   an inline script in _document.tsx sets the class before first paint. */
+:root {
+  color-scheme: light;
+  --pp-page: 255 255 255;
+  --pp-surface: 255 255 255;      /* common-white: cards, panels */
+  --pp-ink: 0 0 0;                /* common-black: headings */
+  --pp-neutral-100: 243 244 247;
+  --pp-neutral-200: 226 228 235;
+  --pp-neutral-300: 204 208 220;
+  --pp-neutral-400: 179 186 203;
+  --pp-neutral-500: 155 164 186;
+  --pp-neutral-600: 130 141 169;
+  --pp-neutral-700: 98 110 142;
+  --pp-neutral-800: 73 82 106;
+  --pp-neutral-900: 48 54 70;
+  --pp-neutral-a100: 42 47 61;
+  --pp-neutral-a200: 32 36 47;
+  --pp-neutral-a300: 25 28 35;
+  --pp-neutral-a400: 21 24 30;
+  --pp-neutral-a500: 18 20 25;
+  --pp-pink-100: 235 245 255;
+  --pp-pink-200: 214 239 255;
+  --pp-shopify-100: 232 245 240;
+  --pp-shopify-200: 205 233 223;
+  --pp-shopify-300: 155 211 192;
+  --pp-shopify-700: 0 92 68;
+  --pp-grey-light: 241 242 255;
+  --pp-green-light: 241 248 238;
+  --pp-salmon-light: 231 218 237;
+  --pp-orange-light: 255 245 238;
+  /* MUI bridge (strings, not triplets — consumed by src/theme/index.ts) */
+  --mui-text-primary: #000000;
+  --mui-paper: #ffffff;
+  --mui-border: rgba(0, 0, 0, 0.23);
+}
+
+html.dark {
+  color-scheme: dark;
+  --pp-page: 10 14 23;            /* #0A0E17 — base ink */
+  --pp-surface: 21 27 42;         /* #151B2A card surface */
+  --pp-ink: 242 245 250;          /* #F2F5FA headings */
+  --pp-neutral-100: 15 20 32;     /* section band — only ~5pts off page, no seam */
+  --pp-neutral-200: 32 40 58;     /* hairline border */
+  --pp-neutral-300: 46 56 80;     /* strong border */
+  --pp-neutral-400: 70 80 113;
+  --pp-neutral-500: 100 113 154;  /* muted text */
+  --pp-neutral-600: 139 150 184;
+  --pp-neutral-700: 169 179 207;  /* body text */
+  --pp-neutral-800: 198 206 226;
+  --pp-neutral-900: 222 228 242;
+  --pp-neutral-a100: 230 234 245;
+  --pp-neutral-a200: 237 240 248;
+  --pp-neutral-a300: 242 244 250;
+  --pp-neutral-a400: 246 248 252;
+  --pp-neutral-a500: 250 251 254;
+  --pp-pink-100: 13 21 38;        /* blue band — soft, seam-free */
+  --pp-pink-200: 18 36 64;
+  --pp-shopify-100: 11 27 24;     /* green band — soft, seam-free */
+  --pp-shopify-200: 25 60 49;
+  --pp-shopify-300: 43 94 77;
+  --pp-shopify-700: 86 199 159;   /* readable bright green text */
+  --pp-grey-light: 19 24 40;
+  --pp-green-light: 16 31 22;
+  --pp-salmon-light: 32 24 42;
+  --pp-orange-light: 38 26 18;    /* was a STATIC #FFF5EE — a white disc on dark */
+  --mui-text-primary: #F2F5FA;
+  --mui-paper: #111623;
+  --mui-border: rgba(255, 255, 255, 0.23);
+}
+
+body {
+  background-color: rgb(var(--pp-page));
+  color: rgb(var(--pp-ink));
+}
+
+/* Horizontal clipping lives on the document so oversized decorative layers
+   (aurora bleed, the giant word track) never create sideways page scroll. */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Native anchor scrolling again: keep #who / #contact / #casestudy headings
+   clear of the fixed 70px header (plus its 2% top inset). */
+[id] {
+  scroll-margin-top: 100px;
+}
+
+
+/* Ambient page mesh — kills flat-black and softens every band edge.
+   Fixed attachment so it stays put while content scrolls across it. */
+html.dark body {
+  background-image:
+    radial-gradient(60rem 40rem at 12% -5%, rgba(30, 144, 255, 0.10), transparent 60%),
+    radial-gradient(50rem 35rem at 92% 8%, rgba(0, 128, 96, 0.08), transparent 62%),
+    radial-gradient(55rem 40rem at 78% 92%, rgba(30, 144, 255, 0.07), transparent 60%),
+    radial-gradient(45rem 30rem at 8% 78%, rgba(86, 199, 159, 0.05), transparent 60%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+:root body {
+  background-image:
+    radial-gradient(60rem 40rem at 12% -5%, rgba(30, 144, 255, 0.07), transparent 60%),
+    radial-gradient(50rem 35rem at 92% 8%, rgba(0, 128, 96, 0.05), transparent 62%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* Section bands feather into the page instead of butting against it with a
+   hard edge.
+
+   DO NOT put this class on a <section> that holds content: a mask applies to
+   the element AND every painted descendant, so the first and last 9rem of the
+   section's own headings, buttons and cards render at partial opacity. Use the
+   <SoftBand> primitive in @/components/shared/backgrounds instead — it rides
+   the mask on a dedicated `absolute inset-0 z-0` layer, so only the tint
+   feathers. NOTE: the mask is vertical only; a band carrying it must be
+   full-bleed, because there is no horizontal feather to hide an inset edge. */
+.band-soft {
+  position: relative;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 9rem, #000 calc(100% - 9rem), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 9rem, #000 calc(100% - 9rem), transparent 100%);
+}
+
+
+/* slick-theme.css draws dots/arrows near-black; keep them visible on dark. */
+html.dark .slick-dots li button:before,
+html.dark .slick-dots li.slick-active button:before {
+  color: #ffffff;
+}
+html.dark .slick-prev:before,
+html.dark .slick-next:before {
+  color: #ffffff;
+}
+
+
 
 
 @font-face {
@@ -236,3 +375,27 @@ background-color: rgba(0,0,0,0.6);
 	animation: slide-out-right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* PixelCard — centre vignette behind the pixel canvas. Upstream hardcodes
+   #09090b; this reads the themed surface token so it works in both themes.
+   The canvas itself is positioned by Tailwind on the element. */
+.pixel-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgb(var(--pp-surface)), transparent 85%);
+  opacity: 0;
+  transition: opacity 800ms cubic-bezier(0.5, 1, 0.89, 1);
+  z-index: 0;
+  pointer-events: none;
+}
+.pixel-card:hover::before,
+.pixel-card:focus-within::before {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pixel-card::before {
+    transition: none;
+  }
+}

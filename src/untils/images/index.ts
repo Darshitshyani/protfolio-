@@ -38,3 +38,13 @@ export {default as bid5 } from "../images/bids/bid5.jpeg";
 export {default as bid6 } from "../images/bids/bid6.jpeg";
 export {default as bid7 } from "../images/bids/bid7.jpeg";
 
+export {default as ShopifyLogo } from "./shopify.svg";
+export { default as ShopifyFullLogo } from "./shopifyFull.svg";
+// Primary brand lockup (mark + "Pixelspiece"), cropped from the 2000x2000
+// source art — 81% of that canvas was transparent padding, which would have
+// rendered the logo at ~8px inside a 40px box. Two theme variants:
+// `LogoLockupLight` has a WHITE wordmark (use on dark surfaces, the site
+// default) and `LogoLockupDark` has a near-black one (use on light surfaces).
+export { default as LogoLockupDark } from "./logo-lockup-dark.png";
+export { default as LogoLockupLight } from "./logo-lockup-light.png";
+export { default as LogoLockupBlue } from "./logo-lockup-blue.png";

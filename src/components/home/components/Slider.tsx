@@ -2,6 +2,8 @@ import { CustomImagePreview } from "@/components/shared/CustomImagePreview";
 import { MobileApp, TestingImage, WebImage } from "@/untils/images";
 import React from "react";
 import Slider from "react-slick";
+import { SplitReveal } from "@/components/shared/motion";
+import { SoftBand } from "@/components/shared/backgrounds";
 
 const Sliders = () => {
   var settings = {
@@ -39,12 +41,17 @@ const Sliders = () => {
   };
 
   return (
-    <div className="w-full h-full bg-black-100 py-[40px] px-4 md:px-[50px] lg:px-[100px] ">
+    <div className="relative w-full h-full py-[40px] px-4 md:px-[50px] lg:px-[100px] ">
+      {/* The tint rides its own feathered layer, never this element: `band-soft`
+          masks every painted descendant, so on the wrapper it would fade the
+          "Services we offer" heading and the top row of cards out with it. */}
+      <SoftBand className="bg-black-100/50" />
+      <div className="relative z-10">
       {/* Heading Section */}
       <div className="flex justify-center">
-        <h1 className="text-[25px] md:text-[30px] lg:text-[35px] font-semibold text-black-A400 mb-[20px]">
-          Services we offer
-        </h1>
+        <h2 className="font-display text-[28px] md:text-[34px] lg:text-[40px] font-bold text-common-black mb-[20px]">
+          <SplitReveal text="Services we offer" />
+        </h2>
       </div>
 
       {/* Slider Section */}
@@ -141,6 +148,7 @@ const Sliders = () => {
             </p>
           </div>
         </Slider>
+      </div>
       </div>
     </div>
   );

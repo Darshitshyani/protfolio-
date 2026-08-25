@@ -7,7 +7,10 @@ export const theme = createTheme({
       black: "#000",
     },
     text: {
-      primary: "#000",
+      // CSS variable so MUI text follows the light/dark class on <html>
+      // (see globals.css). Safe because nothing runs MUI color functions
+      // (alpha/darken/…) on this value — it reaches the page as literal CSS.
+      primary: "var(--mui-text-primary)",
     },
     black: {
       100: "#F3F4F7",
@@ -45,6 +48,24 @@ export const theme = createTheme({
     orange: { main: "#FF8227", light: "FFF5EE" },
     blue: { light: "#F1F8EE", main: "#1448FF", dark: "#6597BE" },
     green: { main: "#4DAC2B" },
+  },
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "var(--mui-paper)",
+          color: "var(--mui-text-primary)",
+          backgroundImage: "none",
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        notchedOutline: {
+          borderColor: "var(--mui-border)",
+        },
+      },
+    },
   },
   typography: {
     button: {
