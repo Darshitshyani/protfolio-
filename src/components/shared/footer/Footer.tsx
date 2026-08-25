@@ -56,9 +56,9 @@ const Footer = () => {
           <StaggerItem>
             <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-black-600">Address</p>
             <address className="mt-2 text-sm text-black-700 font-semibold not-italic">
-              Pragati IT park, C-2/716,
+              906 Silver trade center,
               <br />
-              Sudama Chowk, Mota Varachha,
+               Mota Varachha,
               <br />
               Surat, Gujarat 394101
             </address>
@@ -184,7 +184,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-black-600 text-[14px]">
-              © 2025 Pixelspiece Solutions. All rights reserved.
+              © 2026 Pixelspiece Solutions. All rights reserved.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">

@@ -31,7 +31,7 @@ const CONTACT_DETAILS = [
   {
     icon: <PlaceIcon fontSize="small" />,
     label: "Studio",
-    value: "Pragati IT Park, C-2/716, Sudama Chowk, Mota Varachha, Surat, Gujarat 394101",
+    value: "906 Silver trade center, Mota Varachha, Surat, Gujarat 394101",
     href: null,
   },
 ];
