@@ -440,7 +440,7 @@ const Hero = () => (
       <FadeIn y={16} delay={0.1}>
         <p className="mt-6 max-w-[760px] text-[15px] leading-relaxed text-black-700 md:text-[18px]">
           Product personalization, size guides and fit, estimated delivery dates
-          and scheduled sales &mdash; {numberWord(APP_PORTFOLIO.appCount)}{" "}
+          and scheduled sales {numberWord(APP_PORTFOLIO.appCount)}{" "}
           separate listings, all built and maintained in-house. Every feature
           and every pricing tier for all of them is on this page. Between them
           they hold {APP_PORTFOLIO.totalReviews} merchant reviews, and{" "}

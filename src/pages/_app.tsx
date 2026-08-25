@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
       {/* Site-wide default title. next/head is last-wins, and this sits above
           <Component/>, so any page that sets its own <title> overrides it. */}
       <Head>
-        <title>Pixels Piece — Web, Mobile & Shopify App Development</title>
+        <title>Pixels Piece  Web, Mobile & Shopify App Development</title>
       </Head>
       <style jsx global>{`
         :root {
