@@ -19,8 +19,28 @@ export default function Document() {
     <Html>
       <Head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
-        {/* Add or update this line for your favicon */}
-        <link rel="icon" href="/logo.svg" />
+        {/* Favicon: the brand mark, cropped out of the lockup artwork.
+            Two variants because the mark's inner square is near-black in one
+            and white in the other — a single file would lose that square
+            against matching browser chrome. The plain link comes FIRST as the
+            fallback for browsers that ignore `media` on rel="icon"; the
+            media-scoped pair below overrides it where supported. */}
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon.png"
+          media="(prefers-color-scheme: light)"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon-dark.png"
+          media="(prefers-color-scheme: dark)"
+        />
+        {/* iOS composites this onto a solid tile, so the light-chrome variant
+            (dark square on blue) is the one that reads. */}
+        <link rel="apple-touch-icon" href="/favicon.png" />
       </Head>
       <body>
         <Main />

@@ -46,5 +46,9 @@ export { default as ShopifyFullLogo } from "./shopifyFull.svg";
 // `LogoLockupLight` has a WHITE wordmark (use on dark surfaces, the site
 // default) and `LogoLockupDark` has a near-black one (use on light surfaces).
 export { default as LogoLockupDark } from "./logo-lockup-dark.png";
-export { default as LogoLockupLight } from "./logo-lockup-light.png";
+// Dark-theme lockup: BLUE mark (matching the light theme) + white wordmark.
+// Composed from the white-wordmark artwork by swapping white<->blue inside the
+// mark only — none of the supplied files had this combination, and the stock
+// white-mark version made the logo read as a different colour per theme.
+export { default as LogoLockupLight } from "./logo-lockup-onDark.png";
 export { default as LogoLockupBlue } from "./logo-lockup-blue.png";
