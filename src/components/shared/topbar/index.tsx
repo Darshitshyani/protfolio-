@@ -316,7 +316,7 @@ const Topbar = () => {
 								href="/"
 								onClick={handleSidebarClose}
 								className="flex min-w-0 items-center"
-								aria-label="Pixels Piece — home"
+								aria-label="Pixels Piece  home"
 							>
 								<Image
 									src={LogoLockupLight}

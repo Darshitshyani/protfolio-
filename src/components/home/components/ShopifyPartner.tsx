@@ -59,8 +59,11 @@ import { ShopifyLogo } from "@/untils/images";
  *  1. Establish Pixels Piece as a Shopify Partner that builds on the platform.
  *  2. Lead with the PORTFOLIO — every app we publish on the App Store, as a
  *     teaser strip that hands off to /shopify-apps.
- *  3. Give PIMW the flagship slot: it is the one with a deep internal page,
- *     not the only app we ship.
+ *  3. Give PIMW the flagship slot: the deepest of the apps we ship, not the
+ *     only one we ship. There is no PIMW-only page any more — /shopify-apps
+ *     carries all four with their full features and pricing — so the flagship
+ *     CTA deep-links into PIMW's section there, and it reads that route out
+ *     of the listing data's `internalUrl` rather than typing a path.
  *
  * ── DATA DOCTRINE ──────────────────────────────────────────────────────────
  * Every rating, review count, price and badge comes from
@@ -198,7 +201,7 @@ const PORTFOLIO_STATS: PortfolioStat[] = [
   },
 ];
 
-/** The listing highlights we lead with here. The full set lives on /shopify-app. */
+/** The listing highlights we lead with here. The full set lives on /shopify-apps. */
 const LEAD_HIGHLIGHTS = PIMW_HIGHLIGHTS.slice(0, 4);
 
 /**
@@ -413,7 +416,7 @@ const ShopifyPartner = () => {
             <div className="min-w-0">
               <span className="inline-flex items-center gap-2 rounded-full bg-shopify-100 px-3 py-1 text-[13px] font-medium text-shopify-700">
                 <BoltOutlined fontSize="small" />
-                Our flagship app
+                Flagship of our {APP_PORTFOLIO.appCount} apps
               </span>
 
               <h3 className="mt-4 break-words text-[20px] font-semibold text-common-black md:text-[25px]">
@@ -527,12 +530,17 @@ const ShopifyPartner = () => {
             </Link>
           </HoverLift>
 
+          {/* The deep link is READ from the listing, never typed: PIMW's
+              `internalUrl` points at its section on the all-apps page, so this
+              CTA follows the data if that anchor ever moves. The `??` keeps it
+              a string under `strict` and falls back to the apps page itself,
+              which is the correct destination either way. */}
           <HoverLift className="w-full sm:w-auto">
             <Link
-              href="/shopify-app"
+              href={FLAGSHIP.internalUrl ?? "/shopify-apps"}
               className="inline-flex w-full items-center justify-center gap-2 rounded-lg border-2 border-primary-main bg-common-white px-6 py-3 text-[15px] font-medium text-primary-main transition-colors duration-200 hover:bg-pink-100 md:text-[16px]"
             >
-              Inside {FLAGSHIP.shortName}, our flagship
+              Inside {FLAGSHIP.shortName}
               <ArrowForwardRounded fontSize="small" />
             </Link>
           </HoverLift>

@@ -41,6 +41,25 @@ export type ShopifyApp = {
   internalUrl: string | null;
   /** Icon key the UI maps to an MUI icon. */
   icon: "personalize" | "sizing" | "delivery" | "discount";
+  /**
+   * Pricing tiers, verbatim from the listing. Every app has a free tier.
+   * `annual` is null where the listing shows no annual option.
+   */
+  plans: AppPlan[];
+  /** Longer capability list for the comparison page, in clean prose. */
+  features: string[];
+};
+
+export type AppPlan = {
+  name: string;
+  monthly: string;
+  /** Numeric monthly price, for sorting and schema. */
+  monthlyValue: number;
+  /** Annual total, or null when the listing offers no annual billing. */
+  annual: string | null;
+  /** What the tier includes — the listing's own limits. */
+  includes: string[];
+  featured?: boolean;
 };
 
 export const BUILT_FOR_SHOPIFY_BLURB =
@@ -69,8 +88,73 @@ export const SHOPIFY_APPS: ShopifyApp[] = [
       "Dynamic pricing per option — charge extra for engraving, text or add-ons",
       "Conditional logic, file upload and image swatches, with no code",
     ],
-    internalUrl: "/shopify-app",
+    internalUrl: "/shopify-apps#pimw",
     icon: "personalize",
+    plans: [
+      {
+        name: "Free",
+        monthly: "$0",
+        monthlyValue: 0,
+        annual: null,
+        includes: [
+          "1 option group",
+          "2 fields per group",
+          "10 product assignments",
+          "1 personalizer template",
+          "Unlimited custom orders",
+        ],
+      },
+      {
+        name: "Basic",
+        monthly: "$7.99",
+        monthlyValue: 7.99,
+        annual: "$76.70/yr",
+        includes: [
+          "10 option groups",
+          "8 fields per group",
+          "50 product assignments",
+          "5 templates",
+          "Unlimited custom orders",
+        ],
+      },
+      {
+        name: "Pro",
+        monthly: "$13.99",
+        monthlyValue: 13.99,
+        annual: "$134.30/yr",
+        includes: [
+          "30 option groups",
+          "15 fields per group",
+          "200 product assignments",
+          "15 templates",
+          "Unlimited custom orders",
+        ],
+        featured: true,
+      },
+      {
+        name: "Unlimited",
+        monthly: "$24.99",
+        monthlyValue: 24.99,
+        annual: "$239.99/yr",
+        includes: [
+          "Unlimited option groups",
+          "Unlimited fields",
+          "Unlimited product assignments",
+          "Unlimited templates",
+          "Unlimited custom orders",
+        ],
+      },
+    ],
+    features: [
+      "Live preview — customers see the personalized design on the product in real time",
+      "Engraving, monogram text, photo upload, swatches and dropdowns",
+      "Dynamic pricing per option, applied through Shopify's Cart Transform",
+      "Conditional logic that shows or hides fields based on earlier answers",
+      "10 option field types, plus custom text with 35+ fonts",
+      "PNG and JPEG uploads with rotation and print-ready output",
+      "AI builds option sets in seconds",
+      "Works with every theme through app blocks — no code",
+    ],
   },
   {
     id: "tailor-size-guide",
@@ -97,6 +181,70 @@ export const SHOPIFY_APPS: ShopifyApp[] = [
     ],
     internalUrl: null,
     icon: "sizing",
+    plans: [
+      {
+        name: "Free",
+        monthly: "$0",
+        monthlyValue: 0,
+        annual: null,
+        includes: [
+          "Up to 2 size charts",
+          "1 custom measurement form",
+          "3 AI scans",
+          "5 AI descriptions",
+          "Unlimited size recommender",
+        ],
+      },
+      {
+        name: "Starter",
+        monthly: "$7.99",
+        monthlyValue: 7.99,
+        annual: "$76.71/yr",
+        includes: [
+          "Up to 15 size charts",
+          "2 measurement forms",
+          "20 AI scans",
+          "20 AI descriptions",
+          "Advanced features",
+        ],
+      },
+      {
+        name: "Professional",
+        monthly: "$13.99",
+        monthlyValue: 13.99,
+        annual: "$134.30/yr",
+        includes: [
+          "Up to 20 size charts",
+          "10 measurement forms",
+          "30 AI scans",
+          "30 AI descriptions",
+          "10 premium themes",
+        ],
+        featured: true,
+      },
+      {
+        name: "Advanced",
+        monthly: "$24.99",
+        monthlyValue: 24.99,
+        annual: "$239.90/yr",
+        includes: [
+          "Unlimited size charts",
+          "Unlimited forms",
+          "35 AI scans",
+          "35 AI descriptions",
+          "Premium themes",
+        ],
+      },
+    ],
+    features: [
+      "AI reads a size-chart image and fills in the data for you",
+      "AI recommends the right size from a shopper's measurements",
+      "Guided measurement flow, saved and reused for returning customers",
+      "Size charts by gender and category",
+      "Styling that matches the store theme",
+      "cm-to-inch conversion, in 19 languages",
+      "Built to cut returns on apparel and made-to-measure",
+    ],
   },
   {
     id: "delivery-timer",
@@ -122,6 +270,30 @@ export const SHOPIFY_APPS: ShopifyApp[] = [
     ],
     internalUrl: null,
     icon: "delivery",
+    plans: [
+      {
+        name: "Free",
+        monthly: "$0",
+        monthlyValue: 0,
+        annual: null,
+        includes: [
+          "Estimated delivery date and countdown",
+          "Product page, cart and checkout",
+          "Rules by product, collection, country or zone",
+          "Processing time, cutoffs and holidays",
+          "No paid tier — the whole app is free",
+        ],
+        featured: true,
+      },
+    ],
+    features: [
+      "Estimated delivery date and countdown on product pages, cart and checkout",
+      "ETAs from the shopper's country, postal code and shipping zone",
+      "Processing time, cutoff hours, holidays and weekend blackout dates",
+      "Transit time by zone, country, postal code, product or collection",
+      "Works with Checkout, Shopify POS and Online Store 2.0",
+      "Set expectations up front to cut delivery-related enquiries",
+    ],
   },
   {
     id: "px-schedule",
@@ -148,6 +320,62 @@ export const SHOPIFY_APPS: ShopifyApp[] = [
     ],
     internalUrl: null,
     icon: "discount",
+    plans: [
+      {
+        name: "Free",
+        monthly: "$0",
+        monthlyValue: 0,
+        annual: null,
+        includes: [
+          "Unlimited campaigns and timers",
+          "Full design customization",
+          "3 AI credits per month",
+        ],
+      },
+      {
+        name: "Starter",
+        monthly: "$5.99",
+        monthlyValue: 5.99,
+        annual: "$57.50/yr",
+        includes: [
+          "Everything in Free",
+          "Announcement bar",
+          "Product and cart timers",
+          "Floating widget and pop-up placement",
+          "10 AI credits per month",
+        ],
+      },
+      {
+        name: "Growth",
+        monthly: "$7.99",
+        monthlyValue: 7.99,
+        annual: "$76.70/yr",
+        includes: [
+          "Everything in Starter",
+          "15 AI credits per month",
+        ],
+        featured: true,
+      },
+      {
+        name: "Pro",
+        monthly: "$9.99",
+        monthlyValue: 9.99,
+        annual: "$95.90/yr",
+        includes: [
+          "Everything in Growth",
+          "25 AI credits per month",
+        ],
+      },
+    ],
+    features: [
+      "Schedule sales in advance and run them on autopilot",
+      "Percentage, fixed-amount and free-shipping discounts with a countdown",
+      "BOGO / Buy X Get Y and volume tier discounts",
+      "Spend-more-save-more goals with a flash-sale countdown",
+      "Start, end and recurring sale rules",
+      "Target by product, collection or page, with discount tags and sale icons",
+      "Everything applies automatically at checkout — no discount codes",
+    ],
   },
 ];
 

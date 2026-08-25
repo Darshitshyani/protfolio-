@@ -177,7 +177,7 @@ const ShopifyDevelopment = () => {
       <Head>
         <meta
           name="description"
-          content="Shopify app and storefront development by Pixels Piece — public and custom apps, app extensions, Shopify Functions, theme app blocks and Hydrogen headless storefronts."
+          content="Shopify app and storefront development by Pixels Piece public and custom apps, app extensions, Shopify Functions, theme app blocks and Hydrogen headless storefronts."
         />
       </Head>
 
