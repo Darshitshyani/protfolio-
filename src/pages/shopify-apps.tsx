@@ -42,7 +42,7 @@ const PAGE_URL = "https://www.pixelspiece.com/shopify-apps";
 
 const PAGE_TITLE = `Our Shopify Apps | ${APP_PORTFOLIO.appCount} Apps by Pixels Piece on the Shopify App Store`;
 
-const PAGE_DESCRIPTION = `Pixels Piece publishes ${APP_PORTFOLIO.appCount} apps on the Shopify App Store: product personalization, size guides, estimated delivery dates and scheduled sales. ${APP_PORTFOLIO.builtForShopifyCount} of ${APP_PORTFOLIO.appCount} are Built for Shopify, with ${APP_PORTFOLIO.totalReviews} merchant reviews across the listings.`;
+const PAGE_DESCRIPTION = `Pixels Piece publishes ${APP_PORTFOLIO.appCount} apps on the Shopify App Store: product personalization, size guides, estimated delivery dates and scheduled sales. Every listing is rated ${APP_PORTFOLIO.rating.toFixed(1)}, with ${APP_PORTFOLIO.totalReviews} merchant reviews across the apps.`;
 
 /**
  * Structured data — an ItemList of the apps we publish. Every field is read

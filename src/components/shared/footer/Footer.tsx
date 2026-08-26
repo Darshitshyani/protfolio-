@@ -86,8 +86,9 @@ const Footer = () => {
               </li>
             </ul>
             <p className="mt-2 text-[12px] text-black-600">
-              {APP_PORTFOLIO.builtForShopifyCount} of {APP_PORTFOLIO.appCount}{" "}
-              are Built for Shopify
+              {APP_PORTFOLIO.appCount} apps, rated{" "}
+              {APP_PORTFOLIO.rating.toFixed(1)} across{" "}
+              {APP_PORTFOLIO.totalReviews} reviews
             </p>
           </StaggerItem>
 

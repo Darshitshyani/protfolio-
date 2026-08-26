@@ -9,9 +9,13 @@
  *
  * ── NEVER CLAIM ────────────────────────────────────────────────────────────
  * No install counts, no merchant counts, no revenue/conversion-lift figures,
- * no Shopify Plus or partner-tier claims, no awards. And note the badge is
- * per-app: THREE of the four carry "Built for Shopify"; PIMW does NOT.
- * Never state or imply the badge for PIMW.
+ * no Shopify Plus or partner-tier claims, no awards.
+ *
+ * NO "BUILT FOR SHOPIFY". None of these apps carries Shopify's Built for
+ * Shopify badge. The site briefly claimed three of them did — that came from
+ * misreading the listings' "More apps like this" carousel, where competing
+ * apps' badges appear. Do not reintroduce the claim, in data or in copy,
+ * unless Shopify actually grants it.
  */
 
 export type ShopifyApp = {
@@ -26,8 +30,6 @@ export type ShopifyApp = {
   reviewsUrl: string;
   rating: number;
   reviewCount: number;
-  /** Shopify's "Built for Shopify" badge — verified per listing. */
-  builtForShopify: boolean;
   launched: string;
   /** Human-readable price range for a card. */
   priceLabel: string;
@@ -62,9 +64,6 @@ export type AppPlan = {
   featured?: boolean;
 };
 
-export const BUILT_FOR_SHOPIFY_BLURB =
-  "Meets our highest standards for performance, design, and integration.";
-
 export const SHOPIFY_APPS: ShopifyApp[] = [
   {
     id: "pimw",
@@ -75,7 +74,6 @@ export const SHOPIFY_APPS: ShopifyApp[] = [
     reviewsUrl: "https://apps.shopify.com/add-on-builder/reviews",
     rating: 5.0,
     reviewCount: 8,
-    builtForShopify: false,
     launched: "May 4, 2026",
     priceLabel: "Free – $24.99/mo",
     freeplan: true,
@@ -166,7 +164,6 @@ export const SHOPIFY_APPS: ShopifyApp[] = [
     reviewsUrl: "https://apps.shopify.com/tailor-size-guide/reviews",
     rating: 5.0,
     reviewCount: 4,
-    builtForShopify: true,
     launched: "March 20, 2026",
     priceLabel: "Free – $24.99/mo",
     freeplan: true,
@@ -255,7 +252,6 @@ export const SHOPIFY_APPS: ShopifyApp[] = [
     reviewsUrl: "https://apps.shopify.com/shipdate/reviews",
     rating: 5.0,
     reviewCount: 3,
-    builtForShopify: true,
     launched: "May 12, 2026",
     priceLabel: "Free",
     freeplan: true,
@@ -305,7 +301,6 @@ export const SHOPIFY_APPS: ShopifyApp[] = [
     reviewsUrl: "https://apps.shopify.com/pulse-countdown-timer-bar/reviews",
     rating: 5.0,
     reviewCount: 3,
-    builtForShopify: true,
     launched: "June 1, 2026",
     priceLabel: "Free – $9.99/mo",
     freeplan: true,
@@ -379,11 +374,20 @@ export const SHOPIFY_APPS: ShopifyApp[] = [
   },
 ];
 
+/**
+ * Merchants using our apps — FIRST-PARTY data supplied by Pixels Piece.
+ *
+ * Unlike every other figure in this module, this one is NOT read from a public
+ * listing: the Shopify App Store does not publish install counts, so it cannot
+ * be verified or auto-updated from a listing page. Keep it current by hand, and
+ * always present it as an approximate floor ("200+"), never as an exact count.
+ */
+export const MERCHANT_COUNT = 200;
+
 /** Portfolio-level roll-ups. Derived, so they can never drift from the list. */
 export const APP_PORTFOLIO = {
   appCount: SHOPIFY_APPS.length,
   totalReviews: SHOPIFY_APPS.reduce((sum, app) => sum + app.reviewCount, 0),
-  builtForShopifyCount: SHOPIFY_APPS.filter((a) => a.builtForShopify).length,
   /** Every app currently sits at 5.0, so this is exact, not an average of averages. */
   allFiveStar: SHOPIFY_APPS.every((a) => a.rating === 5),
   rating: 5.0,

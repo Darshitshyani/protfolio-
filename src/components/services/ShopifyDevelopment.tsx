@@ -10,13 +10,11 @@ import OpenInNewRounded from "@mui/icons-material/OpenInNewRounded";
 import SellOutlined from "@mui/icons-material/SellOutlined";
 import StraightenOutlined from "@mui/icons-material/StraightenOutlined";
 
-import { BuiltForShopifyBadge } from "@/components/shared/BuiltForShopifyBadge";
 import Circle from "@/untils/icons/Circle";
 import { ShopifyLogo, WebImage } from "@/untils/images";
 import { PIMW, PIMW_PLATFORM } from "@/untils/data/pimw";
 import {
   APP_PORTFOLIO,
-  BUILT_FOR_SHOPIFY_BLURB,
   SHOPIFY_APPS,
   type ShopifyApp,
 } from "@/untils/data/shopifyApps";
@@ -155,11 +153,6 @@ const portfolioStats: PortfolioStat[] = [
     label: APP_PORTFOLIO.allFiveStar
       ? "Five-star merchant reviews"
       : "Merchant reviews",
-  },
-  {
-    id: "built-for-shopify",
-    value: APP_PORTFOLIO.builtForShopifyCount,
-    label: "Carry Shopify’s Built for Shopify badge",
   },
 ];
 
@@ -417,11 +410,9 @@ const ShopifyDevelopment = () => {
           <FadeIn delay={0.12}>
             <p className="mx-auto mt-6 max-w-[760px] text-center text-[15px] text-black-800 md:text-[18px]">
               We have taken {APP_PORTFOLIO.appCount} apps through Shopify’s
-              review process and onto the App Store, and{" "}
-              {APP_PORTFOLIO.builtForShopifyCount} of them meet Shopify’s
-              highest standards for performance, design and integration. That is
-              the same review checklist, the same API deprecations and the same
-              merchants your project will meet.
+              review process and onto the App Store. That is the same review
+              checklist, the same API deprecations and the same merchants your
+              project will meet.
             </p>
           </FadeIn>
 
@@ -492,9 +483,6 @@ const ShopifyDevelopment = () => {
 
                         {/* Per-app, always. Three of the four carry it; PIMW
                             does not, and a blanket badge would be a lie. */}
-                        {app.builtForShopify ? (
-                          <BuiltForShopifyBadge className="mt-4" />
-                        ) : null}
 
                         <div className="mt-auto flex flex-col items-start gap-2 pt-5">
                           <a
@@ -530,15 +518,6 @@ const ShopifyDevelopment = () => {
               })}
             </ul>
           </Stagger>
-
-          <FadeIn delay={0.1}>
-            <p className="mx-auto mt-8 max-w-[760px] text-center text-[14px] text-black-700 md:text-[15px]">
-              Built for Shopify is Shopify’s own badge:{" "}
-              <span className="italic">“{BUILT_FOR_SHOPIFY_BLURB}”</span> It
-              sits on {APP_PORTFOLIO.builtForShopifyCount} of our{" "}
-              {APP_PORTFOLIO.appCount} listings.
-            </p>
-          </FadeIn>
 
           <FadeIn delay={0.12} className="w-full">
             <div className="mx-auto mt-12 w-full max-w-[860px] rounded-2xl border border-black-200 bg-common-white p-6 shadow-md md:p-8">

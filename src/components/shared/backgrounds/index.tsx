@@ -432,24 +432,53 @@ export const SpotlightCard = ({
 
   const enabled = canHover && !reduce;
 
+  // ── THE CARD'S BOX IS MEASURED ON ENTER, NOT PER MOVE ────────────────────
+  // getBoundingClientRect() forces a style recalc + layout flush, and this is
+  // not the only component that wants one on a given pointer frame — Tilt3D,
+  // Text3D and CursorGrid all do — on a page where dozens of elements are
+  // dirtying inline transforms, so each flush is a full recalc. The box only
+  // changes on enter, scroll or resize, so it is read there and the move
+  // handler does nothing but arithmetic and two custom-property writes.
+  const rectRef = React.useRef<DOMRect | null>(null);
+
+  const invalidate = React.useCallback(() => {
+    rectRef.current = null;
+  }, []);
+
+  const detach = React.useCallback(() => {
+    window.removeEventListener("scroll", invalidate, true);
+  }, [invalidate]);
+
+  React.useEffect(() => detach, [detach]);
+
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     onMouseMove?.(e);
     if (!enabled) return;
     const el = rootRef.current;
     if (!el) return;
+    let rect = rectRef.current;
+    if (!rect || rect.width === 0) {
+      rect = el.getBoundingClientRect();
+      rectRef.current = rect;
+    }
     // CSS vars on the element itself — no re-render per mousemove.
-    const rect = el.getBoundingClientRect();
     el.style.setProperty("--spot-x", `${e.clientX - rect.left}px`);
     el.style.setProperty("--spot-y", `${e.clientY - rect.top}px`);
   };
 
   const handleEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     onMouseEnter?.(e);
-    if (enabled) setActive(true);
+    if (!enabled) return;
+    rectRef.current = rootRef.current?.getBoundingClientRect() ?? null;
+    // Only while hovered — one card at a time, page wide.
+    window.addEventListener("scroll", invalidate, { passive: true, capture: true });
+    setActive(true);
   };
 
   const handleLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     onMouseLeave?.(e);
+    detach();
+    rectRef.current = null;
     setActive(false);
   };
 

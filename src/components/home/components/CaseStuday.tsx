@@ -1,12 +1,15 @@
 import { CaseImageOne, CaseImageThree, CaseImageTwo } from "@/untils/images";
+import Tilt3D from "@/components/shared/Tilt3D";
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import React from "react";
+import { motion } from "motion/react";
 import {
   FadeIn,
   SplitReveal,
   Stagger,
   StaggerItem,
+  useReducedMotion,
 } from "@/components/shared/motion";
 import { SoftBand, SpotlightCard } from "@/components/shared/backgrounds";
 
@@ -30,7 +33,15 @@ import { SoftBand, SpotlightCard } from "@/components/shared/backgrounds";
  * chips surface numbers that were already buried in the prose, they do not
  * introduce new claims. Copy is otherwise untouched.
  *
- * ── THE GIANT WORD ─────────────────────────────────────────────────────────
+ * ── THE GIANT WORD (NOT CURRENTLY RENDERED) ────────────────────────────────
+ * Read the rest of this block as the contract for the word, not as a
+ * description of the markup below: no <GiantWord> is mounted here at present,
+ * and the home page currently carries no giant word at all. Everything the
+ * word needs is still standing — the z-0 <SoftBand>, the `relative z-10`
+ * content wrapper and the mandatory `overflow-hidden` on the <section> — so
+ * restoring it is a one-line change, and the reasoning below is why it goes
+ * back exactly where it is described and nowhere else.
+ *
  * This is the home page's ONE scroll-stage word. The alternating cards are the
  * reason it lives here: they are wide, opaque `bg-common-white` slabs, so they
  * occlude and reveal the word as they ride up over it, which is the entire
@@ -74,6 +85,117 @@ import { SoftBand, SpotlightCard } from "@/components/shared/backgrounds";
  * (1 - speed) x (viewport + word height) — not by the section, so however tall
  * this stack grows the word never wanders out of it.
  */
+
+/**
+ * Slow ken-burns drift for a case-study image.
+ *
+ * ── THE FRAME NEVER MOVES ─────────────────────────────────────────────────
+ * Only this layer transforms. The 16/10 frame around it keeps its own size and
+ * does the cropping with `overflow-hidden`, so nothing here can reflow the card
+ * — no width, height or aspect is animated, which is the house rule.
+ *
+ * ── WHY THE KEYFRAMES START AND END AT REST ───────────────────────────────
+ * `scale` opens and closes at 1 with zero offset, and the pan peaks at 1.6% /
+ * 1.2% against a 4.5%-per-side overhang at the scale peak. Because both run on
+ * the same duration and easing, the pan is a smaller fraction of the frame than
+ * the overhang at EVERY instant, not just at the peak — so no edge of the image
+ * is ever exposed. Resting at both ends also means the whileInView gate can
+ * drop the loop on exit and pick it up on re-entry with nothing visible, and it
+ * leaves the SSR markup with no transform to mismatch on hydration.
+ *
+ * whileInView IS the gate: an IntersectionObserver, so a case study two
+ * viewports below the fold is not paying for a scaling bitmap.
+ */
+function KenBurns({
+  index,
+  children,
+}: {
+  index: number;
+  children: React.ReactNode;
+}) {
+  const reduce = useReducedMotion();
+
+  if (reduce) return <div className="absolute inset-0">{children}</div>;
+
+  // Alternate the pan direction so the stack does not drift as one block.
+  const dir = index % 2 === 0 ? 1 : -1;
+
+  return (
+    <motion.div
+      className="absolute inset-0"
+      initial={false}
+      whileInView={{
+        scale: [1, 1.09, 1],
+        x: ["0%", `${dir * 1.6}%`, "0%"],
+        y: ["0%", `${dir * -1.2}%`, "0%"],
+      }}
+      viewport={{ once: false, amount: 0.15 }}
+      transition={{
+        duration: 21 + index * 3.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/**
+ * An arrival swell on a metric figure. It fires ONCE, as the card comes into
+ * view, and then the number holds perfectly still — see the note on the
+ * viewport prop below.
+ *
+ * A lift-and-swell rather than a shimmer, deliberately: the figures are
+ * `text-primary-main` (#1E90FF) on the card surface, which clears the 3:1 bar
+ * for large bold text with very little headroom. Anything that breathed opacity
+ * or swept a gradient through them would dip that contrast on every cycle,
+ * whereas a transform leaves the rendered colour untouched.
+ *
+ * `phase` is the point of the whole thing: three figures pulsing together read
+ * as a page glitch, three arriving a beat apart read as a heartbeat. It is
+ * derived from both the card and the metric index, so no two on screen share a
+ * clock.
+ *
+ * The origin is pinned left so the figure grows rightward and its left edge
+ * stays locked to the label beneath it, and the keyframes rest at both ends so
+ * the figure is at its layout size before and after.
+ */
+function MetricPulse({
+  phase,
+  className,
+  children,
+}: {
+  phase: number;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  const reduce = useReducedMotion();
+
+  if (reduce) return <span className={className}>{children}</span>;
+
+  return (
+    <motion.span
+      className={className}
+      initial={false}
+      whileInView={{ scale: [1, 1.055, 1], y: [0, -2, 0] }}
+      // ONCE, on arrival — not a loop. Eight figures on screen, each firing
+      // every 5.4s, sit directly above a 130-word paragraph: on a loop they
+      // pull the reader's eye off the line it is on eight times a cycle,
+      // forever. The phase offsets are still doing their job — they stagger the
+      // arrival — but staggering a permanent distraction only spreads it out.
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{
+        duration: 3.8,
+        delay: phase,
+        ease: "easeInOut",
+      }}
+      style={{ transformOrigin: "left center" }}
+    >
+      {children}
+    </motion.span>
+  );
+}
 
 type CaseStudy = {
   industry: string;
@@ -156,6 +278,28 @@ const CaseStuday = () => {
       >
         {CASE_STUDIES.map((study, index) => (
           <StaggerItem key={study.title}>
+            {/* ── NO IDLE SWAY ON THIS ONE, AND A FAR DEEPER PERSPECTIVE ──
+                The right half of this panel is a 130-word paragraph, and the
+                panel is 1180px wide. Two consequences:
+
+                • `perspective` must be LARGER than the card, or the projection
+                  is a fisheye. Tilt3D's 900 default is less than the card's own
+                  width, so even a 4° pointer tilt sheared the outer edge of the
+                  prose by tens of pixels. 2400 puts the vanishing point safely
+                  beyond the panel and the lean stays a lean.
+                • A permanent rotation is a permanent distortion OF the text. At
+                  1.6° the paragraph's outer margin swept ~9px sideways and back
+                  every 8.5s, forever, under the reader's eye — and a layer whose
+                  transform animates continuously is promoted and raster-cached,
+                  so the copy is rendered once and texture-scaled after that. It
+                  stays soft for as long as the card is on screen. Motion BEHIND
+                  reading content is fine; motion ON it is not.
+
+                `max={4}` stays: a lean the reader asked for by putting the
+                pointer on the card is a moment, not a condition. The continuous
+                life this card needs is already here and correctly placed —
+                <KenBurns> on the image, inside a frame that never moves. */}
+            <Tilt3D max={4} lift={10} perspective={2400} idle={0}>
             <SpotlightCard
               className="overflow-hidden rounded-2xl border border-black-200 bg-common-white shadow-md"
               contentClassName="grid grid-cols-1 items-center gap-0 lg:grid-cols-2"
@@ -167,14 +311,20 @@ const CaseStuday = () => {
                   index % 2 === 1 ? "lg:order-2" : ""
                 }`}
               >
+                {/* The frame is fixed — `aspect-[16/10]` and `overflow-hidden`
+                    stay on THIS div, and only the layer inside it transforms,
+                    so the drift can never resize the card. <KenBurns> is also
+                    the positioned parent that `fill` resolves against. */}
                 <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-black-200 bg-black-100">
-                  <Image
-                    src={study.image}
-                    alt={study.alt}
-                    fill
-                    sizes="(min-width: 1024px) 45vw, 92vw"
-                    className="object-cover"
-                  />
+                  <KenBurns index={index}>
+                    <Image
+                      src={study.image}
+                      alt={study.alt}
+                      fill
+                      sizes="(min-width: 1024px) 45vw, 92vw"
+                      className="object-cover"
+                    />
+                  </KenBurns>
                 </div>
               </div>
 
@@ -188,11 +338,16 @@ const CaseStuday = () => {
                 </h3>
 
                 <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-3">
-                  {study.metrics.map((metric) => (
+                  {study.metrics.map((metric, metricIndex) => (
                     <li key={metric.label} className="min-w-0">
-                      <span className="block font-display text-[20px] font-bold leading-none text-primary-main md:text-[24px]">
+                      {/* Phase mixes both indices, so the figures inside one
+                          card land ~0.9s apart AND no two cards share a beat. */}
+                      <MetricPulse
+                        phase={index * 0.5 + metricIndex * 0.9}
+                        className="block font-display text-[20px] font-bold leading-none text-primary-main md:text-[24px]"
+                      >
                         {metric.value}
-                      </span>
+                      </MetricPulse>
                       <span className="mt-1 block text-[12px] text-black-600">
                         {metric.label}
                       </span>
@@ -205,6 +360,7 @@ const CaseStuday = () => {
                 </p>
               </div>
             </SpotlightCard>
+            </Tilt3D>
           </StaggerItem>
         ))}
       </Stagger>

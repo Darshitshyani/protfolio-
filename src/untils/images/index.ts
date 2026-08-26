@@ -52,3 +52,10 @@ export { default as LogoLockupDark } from "./logo-lockup-dark.png";
 // white-mark version made the logo read as a different colour per theme.
 export { default as LogoLockupLight } from "./logo-lockup-onDark.png";
 export { default as LogoLockupBlue } from "./logo-lockup-blue.png";
+
+// Real Shopify App Store listing icons, downloaded from each app's listing.
+// Keyed to ShopifyApp.id so a card can look one up by `APP_ICONS[app.id]`.
+export { default as AppIconPimw } from "./apps/pimw.png";
+export { default as AppIconTailorSizeGuide } from "./apps/tailor-size-guide.png";
+export { default as AppIconDeliveryTimer } from "./apps/delivery-timer.png";
+export { default as AppIconPxSchedule } from "./apps/px-schedule.png";

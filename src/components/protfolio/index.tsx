@@ -69,7 +69,6 @@ import {
 } from "@/components/shared/backgrounds";
 import { Parallax, ScrollStage } from "@/components/shared/scroll";
 import { ShopifyLogo } from "@/untils/images";
-import { BuiltForShopifyBadge } from "@/components/shared/BuiltForShopifyBadge";
 import {
   APP_PORTFOLIO,
   SHOPIFY_APPS,
@@ -291,7 +290,6 @@ const APP_ACTION_CLASS =
  *
  * EVERY fact is read from `@/untils/data/shopifyApps`: name, tagline, rating,
  * review count, price and the badge. Nothing here is a literal. In particular
- * the "Built for Shopify" chip is driven off `app.builtForShopify`, which is
  * false for PIMW — so PIMW can never render one.
  *
  * The action follows the data too: an app that has an `internalUrl` routes to
@@ -338,12 +336,6 @@ const ShopifyAppCard = ({ app }: { app: ShopifyApp }) => {
       </p>
 
       <p className="mt-1 text-[13px] text-black-600">{app.priceLabel}</p>
-
-      {app.builtForShopify ? (
-        <p className="mt-4">
-          <BuiltForShopifyBadge />
-        </p>
-      ) : null}
 
       <div className="mt-5 flex w-full flex-grow items-end">
         {app.internalUrl ? (
@@ -548,10 +540,9 @@ const Protfolio = () => {
                   specialize in crafting visually stunning, highly functional
                   websites and Shopify apps tailored to your business needs. We
                   are a Shopify Partner, and we publish {APP_PORTFOLIO.appCount}{" "}
-                  of our own apps on the Shopify App Store &mdash;{" "}
-                  {APP_PORTFOLIO.builtForShopifyCount} of them Built for Shopify
-                  &mdash; alongside the sleek portfolios and robust e-commerce
-                  platforms we build for clients.
+                  of our own apps on the Shopify App Store, alongside the sleek
+                  portfolios and robust e-commerce platforms we build for
+                  clients.
                 </p>
               </FadeIn>
             </div>
@@ -564,11 +555,9 @@ const Protfolio = () => {
                 Shopify app development services to help businesses achieve
                 their digital goals. Our expertise lies in crafting
                 user-friendly, efficient, and visually appealing web solutions
-                &mdash; from custom storefronts and themes to the{" "}
+               from custom storefronts and themes to the{" "}
                 {APP_PORTFOLIO.appCount} apps we publish on the Shopify App
-                Store, {APP_PORTFOLIO.builtForShopifyCount} of them carrying
-                Shopify&rsquo;s Built for Shopify badge &mdash; tailored to your
-                needs.
+                Store tailored to your needs.
               </p>
             </FadeIn>
           </div>
@@ -610,9 +599,7 @@ const Protfolio = () => {
               </h2>
               <p className="mt-4 max-w-[760px] text-center text-[16px] leading-relaxed text-black-700 md:text-[18px]">
                 We publish {APP_PORTFOLIO.appCount} apps on the Shopify App
-                Store &mdash; {APP_PORTFOLIO.builtForShopifyCount} of them
-                Built for Shopify &mdash; rated{" "}
-                {APP_PORTFOLIO.rating.toFixed(1)} across{" "}
+                Store, rated {APP_PORTFOLIO.rating.toFixed(1)} across{" "}
                 {APP_PORTFOLIO.totalReviews} reviews.
               </p>
             </FadeIn>

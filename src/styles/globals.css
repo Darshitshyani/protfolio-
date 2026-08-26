@@ -399,3 +399,96 @@ background-color: rgba(0,0,0,0.6);
     transition: none;
   }
 }
+
+/* CursorGrid — cursor-reactive canvas grid. */
+.cursor-grid {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.cursor-grid__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ElectricBorder — animated arcing border. `oklch(from ...)` relative colour
+   syntax derives the light tone from whatever --electric-border-color is set
+   to; supported in current Chrome/Safari/Firefox, and degrades to no glow
+   rather than to a broken border on anything older. */
+.electric-border {
+  --electric-light-color: oklch(from var(--electric-border-color) l c h);
+  position: relative;
+  border-radius: inherit;
+  overflow: visible;
+  /* NO `isolation: isolate` (upstream has it). isolate creates a BACKDROP ROOT,
+     which means a `backdrop-filter` on anything inside can only sample within
+     this element — so the glass card would frost the glow layer and nothing
+     else, instead of the page behind it. The child z-indexes below still order
+     correctly: every instance sits inside a transformed motion wrapper, which
+     provides the stacking context isolate was supplying. */
+}
+.eb-canvas-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+.eb-canvas { display: block; }
+.eb-content {
+  position: relative;
+  border-radius: inherit;
+  z-index: 1;
+  /* Passes an `h-full` on .electric-border through to the card inside it. The
+     app / service cards are grid and carousel items that must stretch to their
+     row, and their bottom row is positioned with `mt-auto` — which needs free
+     space to push into. Against an auto-height .electric-border this resolves
+     to auto, so it is a no-op for every other caller. */
+  height: 100%;
+}
+.eb-layers {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+.eb-glow-1,
+.eb-glow-2,
+.eb-background-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+/* Glow strength is a variable, not a constant. Upstream's values are tuned for
+   ONE card on an empty page; in a row of four the outer glows overlap and merge
+   into a solid wash of colour. Callers dial it down with --eb-glow. */
+.electric-border {
+  --eb-glow: 0.3;
+  --eb-glow-spread: 1.1;
+  --eb-glow-blur: 32px;
+}
+.eb-glow-1 {
+  border: 1px solid oklch(from var(--electric-border-color) l c h / 0.5);
+  filter: blur(1px);
+}
+.eb-glow-2 {
+  border: 1px solid var(--electric-light-color);
+  filter: blur(3px);
+  opacity: 0.7;
+}
+.eb-background-glow {
+  z-index: -1;
+  transform: scale(var(--eb-glow-spread));
+  filter: blur(var(--eb-glow-blur));
+  opacity: var(--eb-glow);
+  background: linear-gradient(-30deg, var(--electric-light-color), transparent, var(--electric-border-color));
+}
+@media (prefers-reduced-motion: reduce) {
+  .eb-glow-1, .eb-glow-2, .eb-background-glow { filter: none; }
+}

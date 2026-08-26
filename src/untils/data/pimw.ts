@@ -7,7 +7,7 @@
  * on it — add it here first, with a source, or leave it out.
  *
  * ── NEVER CLAIM (not verified, do not add) ────────────────────────────────
- *  - a "Built for Shopify" badge — the listing does not carry one
+ *  - a "Built for Shopify" badge — none of our apps carries one
  *  - install counts, merchant counts, "10,000+ stores", any user number
  *  - Shopify Plus certification, a Partner tier/level, awards
  *  - any conversion-lift / revenue-lift percentage

@@ -18,18 +18,13 @@
  *   • the full feature list                               -> `app.features`
  *   • every tier, price, annual price and inclusion       -> `app.plans`
  *   • app count / review total / badge count roll-ups     -> `APP_PORTFOLIO`
- *   • the "Built for Shopify" wording                     -> `BUILT_FOR_SHOPIFY_BLURB`
  *
  * `@/untils/data/pimw` is imported for PIMW-SPECIFIC PROSE ONLY (its verbatim
  * reviews, its short name). Never take a figure from it — the portfolio numbers
  * all live in shopifyApps.ts so they cannot disagree with each other.
  *
  * ⚠ THE BADGE IS PER-APP. It renders only inside
- * `{app.builtForShopify ? <BuiltForShopifyBadge /> : null}`, so a blanket
- * "all our apps are Built for Shopify" line is impossible to write by accident.
  * PIMW does NOT carry it. Three of the four do, and
- * "3 of our 4 apps are Built for Shopify" — assembled from
- * `builtForShopifyCount` / `appCount` — is the accurate, strong version.
  *
  * ⚠ THE DELIVERY TIMER HAS ONE FREE TIER AND NO PAID PLAN. Its pricing block
  * therefore renders as a single full-width "Free — the whole app" card
@@ -106,12 +101,10 @@ import {
   SoftBand,
   SpotlightCard,
 } from "@/components/shared/backgrounds";
-import { BuiltForShopifyBadge } from "@/components/shared/BuiltForShopifyBadge";
 import { ScrollStage } from "@/components/shared/scroll";
 import {
   APP_PORTFOLIO,
   APP_REVIEWS,
-  BUILT_FOR_SHOPIFY_BLURB,
   SHOPIFY_APPS,
   type AppPlan,
   type ShopifyApp,
@@ -176,8 +169,6 @@ const titleCaseNumber = (n: number): string => {
   return word.charAt(0).toUpperCase() + word.slice(1);
 };
 
-/** The one sentence that states the badge split. Assembled, never typed. */
-const BADGE_RATIO = `${APP_PORTFOLIO.builtForShopifyCount} of our ${APP_PORTFOLIO.appCount} apps are Built for Shopify`;
 
 /** Anchor id for an app's own section, shared by the comparison row's links. */
 const sectionIdFor = (app: ShopifyApp): string => `app-${app.id}`;
@@ -381,17 +372,6 @@ const HERO_STATS: Array<{ id: string; value: React.ReactNode; label: string }> =
     value: <CountUp value={APP_PORTFOLIO.rating} decimals={1} duration={1.2} />,
     label: "the rating on every one of them",
   },
-  {
-    id: "badge",
-    value: (
-      <span className="inline-flex items-baseline">
-        <CountUp value={APP_PORTFOLIO.builtForShopifyCount} duration={1.1} />
-        <span className="px-1.5 text-[16px] font-medium text-black-600">of</span>
-        <CountUp value={APP_PORTFOLIO.appCount} duration={1.1} />
-      </span>
-    ),
-    label: "carry Shopify's Built for Shopify badge",
-  },
 ];
 
 /* The fixed topbar is 70px tall and floats at top-[2%], so the first section
@@ -443,8 +423,8 @@ const Hero = () => (
           and scheduled sales {numberWord(APP_PORTFOLIO.appCount)}{" "}
           separate listings, all built and maintained in-house. Every feature
           and every pricing tier for all of them is on this page. Between them
-          they hold {APP_PORTFOLIO.totalReviews} merchant reviews, and{" "}
-          {BADGE_RATIO}.
+          they hold {APP_PORTFOLIO.totalReviews} merchant reviews, every
+          listing rated {APP_PORTFOLIO.rating.toFixed(1)}.
         </p>
       </FadeIn>
 
@@ -561,9 +541,6 @@ const GlanceTable = () => (
                       {app.tagline}
                     </span>
                     {/* Per-listing. Never rendered for an app without it. */}
-                    {app.builtForShopify ? (
-                      <BuiltForShopifyBadge className="mt-2" />
-                    ) : null}
                   </span>
                 </span>
               </th>
@@ -618,7 +595,6 @@ const GlanceCard = ({ app }: { app: ShopifyApp }) => (
   >
     <div className="flex flex-wrap items-start justify-between gap-3">
       <AppIcon app={app} />
-      {app.builtForShopify ? <BuiltForShopifyBadge /> : null}
     </div>
 
     <h3 className="mt-5 break-words font-display text-[19px] font-bold leading-snug tracking-tight text-common-black">
@@ -898,8 +874,6 @@ const AppSection = ({ app, index }: { app: ShopifyApp; index: number }) => {
           <FadeIn className="min-w-0 max-w-[720px]">
             <div className="flex flex-wrap items-center gap-3">
               <AppIcon app={app} />
-              {/* Read from the listing. PIMW does not carry the badge. */}
-              {app.builtForShopify ? <BuiltForShopifyBadge /> : null}
             </div>
 
             <h2
@@ -1096,15 +1070,6 @@ const COMMON_POINTS: CommonPoint[] = [
     body: `${APP_PORTFOLIO.totalReviews} merchant reviews across the ${APP_PORTFOLIO.appCount} listings, and not one of them has pulled an app below ${APP_PORTFOLIO.rating.toFixed(1)}.`,
     icon: <StarRounded />,
     when: APP_PORTFOLIO.allFiveStar,
-  },
-  {
-    id: "badge",
-    title: `${APP_PORTFOLIO.builtForShopifyCount} of ${APP_PORTFOLIO.appCount} are Built for Shopify`,
-    body: `Shopify grants the badge to apps that, in its words, "${BUILT_FOR_SHOPIFY_BLURB.replace(/\.$/, "")}". ${APP_PORTFOLIO.builtForShopifyCount} of ours carry it, and it appears on those apps above and nowhere else.`,
-    icon: <VerifiedRounded />,
-    when:
-      APP_PORTFOLIO.builtForShopifyCount > 0 &&
-      APP_PORTFOLIO.builtForShopifyCount < APP_PORTFOLIO.appCount,
   },
   {
     id: "surfaces",
